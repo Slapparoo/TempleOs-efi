@@ -22,3 +22,7 @@ Create a fully self contained boot integration for TempleOS inside EFI, where al
 All contribitions are welcome, either create a pull request of log an issues against the project in Github
 
 The overall TempleOS community benefits more by having documented code so for every .HC file please also include a corrosponding .md file and a corrosponding .DD file.
+
+## Related Projects
+[templeos-uefi](https://git.checksum.fail/alec/templeos-uefi/src/branch/master/TOSBoot)
+[ZealOS](https://github.com/Zeal-Operating-System/ZealOS)
