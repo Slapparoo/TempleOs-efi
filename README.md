@@ -1,4 +1,4 @@
-# TempleOs-efi
+# TempleOS-efi
 Efi integrations wholey inside TempleOS 
 ## Overview
 Create a fully self contained boot integration for TempleOS inside EFI, where all tools and compilation is performed completely insdei TempleOS
