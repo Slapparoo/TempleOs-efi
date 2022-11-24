@@ -26,3 +26,4 @@ The overall TempleOS community benefits more by having documented code so for ev
 ## Related Projects
 [templeos-uefi](https://git.checksum.fail/alec/templeos-uefi/src/branch/master/TOSBoot)<br/>
 [ZealOS](https://github.com/Zeal-Operating-System/ZealOS)
+[3Days](https://github.com/Slapparoo/3Days)
