@@ -9,9 +9,9 @@ The ability to create basic "Hello World!" EFI files completely inside TempleOS 
 Create a fully self contained boot integration for TempleOS inside EFI, where all tools and compilation is performed completely insdei TempleOS
 
 ## Initial tasks
-* Adapt the UFI header files for HolyC
-* Implement the ability to create .efi files inside TempleOS for code wrtting in HolyC
-* Create examples if EFI integrations
+* Adapt the UFI header files for HolyC (Only Partially complete)
+* Implement the ability to create .efi files inside TempleOS for code wrtting in HolyC (Complete in the File folder)
+* Create examples if EFI integrations (Partially Complete basic hello world exists)
 
 ## Project layout
 
