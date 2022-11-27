@@ -1,6 +1,6 @@
 //#include "/Efisource/Headers/Efi.HH";
 //PassTrace;
-public CApplicationPointers appPtrs;
+public CApplicationPointers appPtrs;
 
 
 // very basic char to wchar (probably alpha letters only)
@@ -14,12 +14,12 @@ U0 ToWChar(U8 * src, U16 *dst) {
 
 
 /**
-Efi methods expect the first 4 parameters in teh registers RCX, RDX, R8, R9
-they also expec 4 * 8 Bytes of space available in the callers local variable space
+Efi methods expect the first 4 parameters in the registers RCX, RDX, R8, R9
+they also expect 4 * U64 Bytes of space available in the callers local variable space
 
-The U64 reg RCX p1 indicates to teh compiler you want that variable in that register
+The U64 reg RCX p1 indicates to the compiler you want that variable in that register
 
-This isn't really ment to be called directly usedefine spring board method and use that instead
+This isn't really ment to be called directly create a spring board method and use that instead
 
 */
 #exe{
@@ -29,9 +29,6 @@ This isn't really ment to be called directly usedefine spring board method and u
 U64 EfiCallWrapper(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RCX this, U64 reg RBX dest) {
 // Create 4 * U64 in the methods stack
 //  AND  RSP, 0xFFFFFFFFFFFFFFF0 
-
-//  return 32;
-
 
   U64 reg RAX res = 0;
   U64 pad[4];
@@ -64,7 +61,7 @@ U16 wchar[STR_LEN];
 
 
 /**
-Most things are passing relitive pointers with is no good it needs full address pointers
+Most things are passing relative pointers which is no good it needs full address pointers, Virtual pointers
 */
 U8* FixPtr(U8 *ptr) {
   if (ptr > appPtrs.appPointer) {
@@ -93,11 +90,9 @@ U0 Print(U8 *fmt,...) {
 
   // only prints the str not parameters so dont do anything fancy
 
-
   fmt = FixPtr(fmt);  
 
   ToWChar(fmt, wchar + appPtrs.appPointer);
-
 
   EfiPrint(wchar + appPtrs.appPointer); 
 }
@@ -131,6 +126,3 @@ U64 EfiEntry(U64 efiSystemTable, U64 imageHandle, U64 appPtr, U64 stackPtr) {
   return AppEntry();
 }
 #exe{Option(OPTf_WARN_HEADER_MISMATCH, ON);}
-
-
-

@@ -1,5 +1,8 @@
 #include "/Efisource/File/EfiFile.HH"
 
+
+
+
 U8 * efiDataString;
 
 #exe{Option(OPTf_NO_REG_VAR, OFF);}
@@ -22,7 +25,7 @@ U0 hexy(U8 *data, I64 sz)
         "\n";
     }
 }
-#exe{Option(OPTf_NO_REG_VAR, ON);}
+#exe{Option(OPTf_NO_REG_VAR, ON);}
 
 
 U0 printCharacteristics(CPeSectionHeader *peSectionHeader)
@@ -209,8 +212,12 @@ U0 dumpSectionBlobsToFile(CPeSectionHeader *peSectionHeader, CPeHeader *peHeader
     }
 }
 
+/**
+ * Dump out a efi file
+*/
+
 U0 EfiFileDump(U8 * filename) {
-  U8 efiFName =ExtDft(filename, "efi");
+  U8 *efiFName =ExtDft(filename, "efi");
   U64 sz = 0;
 
   efiDataString = FileRead(efiFName, &sz);

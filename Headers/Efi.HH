@@ -66,8 +66,7 @@ class CEfiSimpleTextOutputInterface {
 }
 
 
-
-// This should always be loaded to a memeoty address of 0x20494249
+// This is the main structure provied to the applciation by UEFI
 class CEfiSystemTable:CEfiTableHeader {
 //  CEfiTableHeader Hdr;
   U32;  // some opadding to line things up? Maybe the extends dosen't line up the same 32bit align?
@@ -88,7 +87,7 @@ class CEfiSystemTable:CEfiTableHeader {
 
 #assert sizeof(CEfiTableHeader)==0x18
 #assert sizeof(CEfiSystemTable)==0x74  
-#assert sizeof(CEfiSimpleTextOutputInterface)==0x50
+#assert sizeof(CEfiSimpleTextOutputInterface)==0x50
 
 
 class CApplicationPointers {

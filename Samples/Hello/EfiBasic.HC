@@ -1,2 +1,2 @@
 
-"Hello there from TempleOS\n";
+"Hello from TempleOS\n";
