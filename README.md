@@ -19,10 +19,20 @@ Create a fully self contained boot integration for TempleOS inside EFI, where al
 | /Bootloader | /Efisource/Bootloader | Source for the TempleOS efi Bootloader |
 | /Kernal | /Efisource/Kernel | Source for the modified kernal for EFI integration |
 
+## Adding to an exsting TempleOS reposity 
+The TempleOs-efi project can be added as a submodle to existing TempleOS git project as a sub module (this will add a new directy in the root file path /)
+
+In you local git copy of TempleOS use:
+`git submodule add git@github.com:Slapparoo/TempleOs-efi.git Efisource`
+
+I have tested in TempleOS-EE and 3days - I am reasonably confident it will work with all distributions
+
 ## Contributing
 All contribitions are welcome, either create a pull request of log an issues against the project in Github
 
 The overall TempleOS community benefits more by having documented code so for every .HC file please also include a corrosponding .md file and a corrosponding .DD file.
+
+
 
 ## Related Projects
 [templeos-uefi](https://git.checksum.fail/alec/templeos-uefi/src/branch/master/TOSBoot)<br/>
