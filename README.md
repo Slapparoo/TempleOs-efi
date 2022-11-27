@@ -14,6 +14,7 @@ Create a fully self contained boot integration for TempleOS inside EFI, where al
 |---|---|---|
 | / | /Efisource | Main directory to house all the sources toosl and utilies for the integration|
 | /Headers | /Efisource/Headers | Adapted EFI headers and method Stubs, these files don't describe functions in TempleOS they describe functions in EFI | 
+| /File | /Efisource/File | Utilities for reading and writing EFI files |
 | /Samples | /Efisource/Samples | Numbered samples building up in complexity |
 | /Bootloader | /Efisource/Bootloader | Source for the TempleOS efi Bootloader |
 | /Kernal | /Efisource/Kernel | Source for the modified kernal for EFI integration |
