@@ -1,5 +1,10 @@
 # TempleOS-efi
 Efi integrations wholey inside TempleOS 
+
+## Current Status
+
+The ability to create basic "Hello World!" EFI files completely inside TempleOS using HolyC
+
 ## Overview
 Create a fully self contained boot integration for TempleOS inside EFI, where all tools and compilation is performed completely insdei TempleOS
 
