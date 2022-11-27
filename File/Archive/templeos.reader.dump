@@ -1,0 +1,161 @@
+$WW+H,1$0.000000s
+ExeFile2("T:/Efisource/Utils/reader.HC",CCF_CMD_LINE);
+$PT$$FG$$BG$$FG,4$$BK,1$WARNING:$FG$$BK,0$ Using 64-bit reg var.
+ $LK,"FL:T:/Efisource/Utils/reader.HC,32"$ 'c' in 'hexy'
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'printPeHeader'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,97"$
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'printPeFrontMatter'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,110"$
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'printPeOptionalheader'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,140"$
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'dumpSectionBlobsToFile'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,200"$
+0x7f10824ca058, 0x7f10824ca058
+fm 0x7f10824ca058 0x5a4d
+peFrontMatter->id            0x5a4d
+peFrontMatter->HeaderOffset  0x0080, 128 
+ 62
+offset: 0x00000000
+4d M 5a Z 80 € 00 . 01 . 00 . 00 . 00 . 04 . 00 . 10 . 00 . ff ÿ ff ÿ 00 . 00 . 
+40 @ 01 . 00 . 00 . 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 80 € 00 . 00 . 00 . 
+peHeader               7F10824CA0D8 5821158287473
+pe32OptionalHeader     7F10824CA0F0 1
+pPeImageDataDirectorys 7F10824CA160 33
+peSectionHeader        7F10824CA1E0 9
+header->magic                0x4550 PEQE
+header->Machine              0x8664
+header->NumberOfSections     1
+header->TimeDateStamp        63745f59
+header->PointerToSymbolTable 0
+header->NumberOfSymbols      0
+header->SizeOfOptionalHeader f0
+header->Characteristics      202f
+offset: 0x00000080
+50 P 45 E 00 . 00 . 64 d 86 † 01 . 00 . 59 Y 5f _ 74 t 63 c 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . f0 ð 00 . 2f / 20   0b . 02 . 01 . 49 I 00 . 02 . 00 . 00 . 
+OptionalHeader->Magic                    0x0000020b
+OptionalHeader->SizeOfCode               0x00000200, 512 
+OptionalHeader->MajorLinkerVersion       0x00000001
+OptionalHeader->MinorLinkerVersion       0x00000049
+OptionalHeader->SizeOfCode               0x00000200
+OptionalHeader->SizeOfInitializedData    0x00000000
+OptionalHeader->SizeOfUninitializedData  0x00000000
+OptionalHeader->AddressOfEntryPoint      0x00001000
+OptionalHeader->BaseOfCode               0x00001000
+OptionalHeader->ImageBase                0x00400000
+OptionalHeader->SectionAlignment         0x00001000
+OptionalHeader->FileAlignment            0x00000200
+OptionalHeader->MajorOSVersion           0x00000001
+OptionalHeader->MinorOSVersion           0x00000000
+OptionalHeader->MajorImageVersion        0x00000000
+OptionalHeader->MinorImageVersion        0x00000000
+OptionalHeader->MajorSubsystemVersion    0x00000005
+OptionalHeader->MinorSubsystemVersion    0x00000000
+OptionalHeader->Win32VersionValue        0x00000000
+OptionalHeader->SizeOfImage              0x00002000
+OptionalHeader->SizeOfHeaders            0x00000200
+OptionalHeader->CheckSum                 0x0000dbab
+OptionalHeader->Subsystem                0x0000000a
+OptionalHeader->DllCharacteristics       0x00000000
+OptionalHeader->SizeOfStackReserve       0x00001000
+OptionalHeader->SizeOfStackCommit        0x00001000 u
+OptionalHeader->SizeOfHeapReserve        0x00010000 u
+OptionalHeader->SizeOfHeapCommit         0x00000000 u
+OptionalHeader->LoaderFlags              0x00000000 u
+OptionalHeader->NumberOfRvaAndSizes      0x00000010 u
+offset: 0x00000098
+0b . 02 . 01 . 49 I 00 . 02 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 02 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+05 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 20   00 . 00 . 00 . 02 . 00 . 00 . 
+ab « db Û 00 . 00 . 0a . 00 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 
+pPeImageDataDirectorys 7F10824CA160 7F10824CA160 u
+offset: 0x00000108
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+PPeSectionHeader->Name                     .text
+PPeSectionHeader->VirtualSize              0x00000083
+PPeSectionHeader->VirtualAddress           0x00001000
+PPeSectionHeader->SizeOfRawData            0x00000200
+PPeSectionHeader->PointerToRawData         0x00000200
+PPeSectionHeader->PointerToRelocations     0x00000000
+PPeSectionHeader->PointerToLinenumbers     0x00000000
+PPeSectionHeader->NumberOfRelocations      0x0000
+PPeSectionHeader->NumberOfLinenumbers      0x0000
+PPeSectionHeader->Characteristics          0x60000020 CNT_CODE MEM_EXECUTE MEM_READ 
+$HL,1$            7F10824CA258 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA25A 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA25C 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA25E 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA260 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA262 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA264 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA266 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA268 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA26A 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA26C 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA26E 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA270 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA272 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA274 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA276 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA278 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA27A 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA27C 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA27E 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA280 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA282 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA284 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA286 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA288 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA28A 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA28C 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA28E 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA290 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA292 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA294 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA296 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA298 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA29A 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA29C 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA29E 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2A0 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2A2 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2A4 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2A6 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2A8 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2AA 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2AC 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2AE 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2B0 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2B2 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2B4 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2B6 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2B8 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2BA 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2BC 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2BE 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2C0 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2C2 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2C4 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2C6 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2C8 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2CA 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2CC 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2CE 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2D0 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2D2 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2D4 0000         ADD	U8 [RAX],U8 AL
+            7F10824CA2D6 0000         ADD	U8 [RAX],U8 AL
+$HL,0$0.165000s ans=0x00000001=1
+

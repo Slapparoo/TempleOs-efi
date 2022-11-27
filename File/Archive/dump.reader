@@ -1,0 +1,82 @@
+peFrontMatter->id            0x5a4d
+peFrontMatter->HeaderOffset  0x0080, 128 
+offset: 0x00000000
+4d M 5a Z 80 . 00 . 01 . 00 . 00 . 00 . 04 . 00 . 10 . 00 . ff . ff . 00 . 00 . 
+40 @ 01 . 00 . 00 . 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 80 . 00 . 00 . 00 . 
+header->magic                0x4550 PE
+header->Machine              0x8664
+header->NumberOfSections     4
+header->TimeDateStamp        1668490868
+header->PointerToSymbolTable 0
+header->NumberOfSymbols      0
+header->SizeOfOptionalHeader 240
+header->Characteristics      8238
+offset: 0x00000080
+50 P 45 E 00 . 00 . 64 d 86 . 04 . 00 . 74 t 26 & 73 s 63 c 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . f0 . 00 . 2e . 20   0b . 02 . 01 . 49 I 00 . 02 . 00 . 00 . 
+OptionalHeader->Magic                    0x0000020b
+OptionalHeader->SizeOfCode               0x00000200, 512 
+OptionalHeader->MajorLinkerVersion       0x00000001
+OptionalHeader->MinorLinkerVersion       0x00000049
+OptionalHeader->SizeOfCode               0x00000200
+OptionalHeader->SizeOfInitializedData    0x00000600
+OptionalHeader->SizeOfUninitializedData  0x00000000
+OptionalHeader->AddressOfEntryPoint      0x00003033
+OptionalHeader->BaseOfCode               0x00003000
+OptionalHeader->BaseOfData               0x00400000
+OptionalHeader->ImageBase                0x00000000
+OptionalHeader->SectionAlignment         0x00001000
+OptionalHeader->FileAlignment            0x00000200
+OptionalHeader->MajorOSVersion           0x00000001
+OptionalHeader->MinorOSVersion           0x00000000
+OptionalHeader->MajorImageVersion        0x00000000
+OptionalHeader->MinorImageVersion        0x00000000
+OptionalHeader->MajorSubsystemVersion    0x00000005
+OptionalHeader->MinorSubsystemVersion    0x00000000
+OptionalHeader->Win32VersionValue        0x00000000
+OptionalHeader->SizeOfImage              0x00005000
+OptionalHeader->SizeOfHeaders            0x00000400
+OptionalHeader->CheckSum                 0x00006409
+OptionalHeader->Subsystem                0x0000000a
+OptionalHeader->DllCharacteristics       0x00000040
+OptionalHeader->SizeOfStackReserve       0x00001000
+OptionalHeader->SizeOfStackCommit        0x00000000
+OptionalHeader->SizeOfHeapReserve        0x00001000
+OptionalHeader->SizeOfHeapCommit         0x00000000
+OptionalHeader->LoaderFlags              0x00010000
+OptionalHeader->NumberOfRvaAndSizes      0x00000000
+offset: 0x00000098
+0b . 02 . 01 . 49 I 00 . 02 . 00 . 00 . 00 . 06 . 00 . 00 . 00 . 00 . 00 . 00 . 
+33 3 30 0 00 . 00 . 00 . 30 0 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 02 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+05 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 50 P 00 . 00 . 00 . 04 . 00 . 00 . 
+09 . 64 d 00 . 00 . 0a . 00 . 40 @ 00 . 00 . 10 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 
+OptionalHeader->peImageDataDirectory  0 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  1 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  2 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  3 size, VirtualAddress   0x00002000, 0x0000003c
+OptionalHeader->peImageDataDirectory  4 size, VirtualAddress   0x60000020, 0x00000000
+OptionalHeader->peImageDataDirectory  5 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  6 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  7 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  8 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory  9 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory 10 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory 11 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory 12 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory 13 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory 14 size, VirtualAddress   0x00000000, 0x00000000
+OptionalHeader->peImageDataDirectory 15 size, VirtualAddress   0x00000000, 0x00000000
+offset: 0x000000f8
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 0c . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 

@@ -1,0 +1,17 @@
+The Most Basic of examples
+
+
+This is not designed to be run in TempleOS it is designed to be run in UEFI
+
+
+To Build
+Cursor over Build.HC and hit F5
+whic will generate EfiAsm.BIN.Z and EfiAsm.efi
+
+
+The resulting EfiAsm.efi application can be inspected with EfiFileDump("EfiAsm");
+
+
+Once happy it can be copied to a UEFI boot parition 
+
+A good way to run them is in VirtualBox in EfiShell (which is already installed in VirtualBox)

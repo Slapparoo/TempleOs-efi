@@ -1,0 +1,41 @@
+Trace;
+
+
+/**
+Efi methods expect the first 4 parameters in teh registers RCX, RDX, R8, R9
+they also expec 4 * 8 Bytes of space available in the callers local variable space
+
+The U64 reg RCX p1 indicates to teh compiler you want that variable in that register
+*/
+U64 EfiCallWrapper(U64 reg RCX p1, U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RBX dest) {
+// Create 4 * U64 in the methods stack
+  U64 pad[4];
+  CALL RBX
+}
+
+
+
+/** Some serios indirect is required to get here */
+U64 DestinationEfiDummyMethod(U64 a, U64 b, U64 c, U64 d) {
+  "%d %d %d %d\n", a, b, c, d;
+}  
+
+
+asm {
+_CALLED_BY_EFI::
+// push the parameters which arrived in register onto the stack
+ PUSH   RBP 
+ MOV	RBP, RSP
+ PUSH   R9
+ PUSH   R8
+ PUSH   RDX
+ PUSH   RCX
+ CALL   &DestinationEfiDummyMethod    
+ MOV    RSP, RBP
+ POP    RBP
+ RET
+}
+
+EfiCallWrapper(11, 22, 33, 44, &_CALLED_BY_EFI);
+
+

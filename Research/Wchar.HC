@@ -1,0 +1,19 @@
+
+// very basic char to wchar (probably alpha letters only)
+U0 toWChar(U8 * src, U16 *dst) {
+  for (; *src != 0; src++, dst++) {
+    *dst = *src(U16) &0xFF;
+  }
+  dst++ ;
+  *dst = 0;
+}
+
+
+U8 *str = "my my";
+U16 str16[6];
+
+
+toWChar(str, &str16); 
+
+"%s\n", str;
+"%s\n", str16;

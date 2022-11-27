@@ -1,0 +1,142 @@
+$WW+H,1$0.000000s
+ExeFile2("T:/Efisource/Utils/reader.HC",CCF_CMD_LINE);
+$PT$$FG$$BG$$FG,4$$BK,1$WARNING:$FG$$BK,0$ Using 64-bit reg var.
+ $LK,"FL:T:/Efisource/Utils/reader.HC,32"$ 'c' in 'hexy'
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'printPeHeader'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,97"$
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'printPeFrontMatter'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,110"$
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'printPeOptionalheader'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,140"$
+$FG,4$$BK,1$WARNING:$FG$$BK,0$ Function should return val in fun 'dumpSectionBlobsToFile'.
+$LK,"FL:T:/Efisource/Utils/reader.HC,200"$
+0x7f10824d4058, 0x7f10824d4058
+fm 0x7f10824d4058 0x5a4d
+peFrontMatter->id            0x5a4d
+peFrontMatter->HeaderOffset  0x0080, 128 
+ 62
+offset: 0x00000000
+4d M 5a Z 80 € 00 . 01 . 00 . 00 . 00 . 04 . 00 . 10 . 00 . ff ÿ ff ÿ 00 . 00 . 
+40 @ 01 . 00 . 00 . 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 80 € 00 . 00 . 00 . 
+peHeader               7F10824D40D8 5821158452508
+pe32OptionalHeader     7F10824D40F0 1
+pPeImageDataDirectorys 7F10824D4160 33
+peSectionHeader        7F10824D41E0 9
+header->magic                0x4550 PEQE
+header->Machine              0x8664
+header->NumberOfSections     1
+header->TimeDateStamp        63745f59
+header->PointerToSymbolTable 0
+header->NumberOfSymbols      0
+header->SizeOfOptionalHeader f0
+header->Characteristics      202f
+offset: 0x00000080
+50 P 45 E 00 . 00 . 64 d 86 † 01 . 00 . 59 Y 5f _ 74 t 63 c 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . f0 ð 00 . 2f / 20   0b . 02 . 01 . 49 I 00 . 02 . 00 . 00 . 
+OptionalHeader->Magic                    0x0000020b
+OptionalHeader->SizeOfCode               0x00000200, 512 
+OptionalHeader->MajorLinkerVersion       0x00000001
+OptionalHeader->MinorLinkerVersion       0x00000049
+OptionalHeader->SizeOfCode               0x00000200
+OptionalHeader->SizeOfInitializedData    0x00000000
+OptionalHeader->SizeOfUninitializedData  0x00000000
+OptionalHeader->AddressOfEntryPoint      0x00001000
+OptionalHeader->BaseOfCode               0x00001000
+OptionalHeader->ImageBase                0x00400000
+OptionalHeader->SectionAlignment         0x00001000
+OptionalHeader->FileAlignment            0x00000200
+OptionalHeader->MajorOSVersion           0x00000001
+OptionalHeader->MinorOSVersion           0x00000000
+OptionalHeader->MajorImageVersion        0x00000000
+OptionalHeader->MinorImageVersion        0x00000000
+OptionalHeader->MajorSubsystemVersion    0x00000005
+OptionalHeader->MinorSubsystemVersion    0x00000000
+OptionalHeader->Win32VersionValue        0x00000000
+OptionalHeader->SizeOfImage              0x00002000
+OptionalHeader->SizeOfHeaders            0x00000200
+OptionalHeader->CheckSum                 0x0000dbab
+OptionalHeader->Subsystem                0x0000000a
+OptionalHeader->DllCharacteristics       0x00000000
+OptionalHeader->SizeOfStackReserve       0x00001000
+OptionalHeader->SizeOfStackCommit        0x00001000 u
+OptionalHeader->SizeOfHeapReserve        0x00010000 u
+OptionalHeader->SizeOfHeapCommit         0x00000000 u
+OptionalHeader->LoaderFlags              0x00000000 u
+OptionalHeader->NumberOfRvaAndSizes      0x00000010 u
+offset: 0x00000098
+0b . 02 . 01 . 49 I 00 . 02 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 00 . 40 @ 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 02 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+05 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 20   00 . 00 . 00 . 02 . 00 . 00 . 
+ab « db Û 00 . 00 . 0a . 00 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 10 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 01 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 10 . 00 . 00 . 00 . 
+pPeImageDataDirectorys 7F10824D4160 7F10824D4160 u
+offset: 0x00000108
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 00 . 
+PPeSectionHeader->Name                     .text
+PPeSectionHeader->VirtualSize              0x00000083
+PPeSectionHeader->VirtualAddress           0x00001000
+PPeSectionHeader->SizeOfRawData            0x00000200
+PPeSectionHeader->PointerToRawData         0x00000200
+PPeSectionHeader->PointerToRelocations     0x00000000
+PPeSectionHeader->PointerToLinenumbers     0x00000000
+PPeSectionHeader->NumberOfRelocations      0x0000
+PPeSectionHeader->NumberOfLinenumbers      0x0000
+PPeSectionHeader->Characteristics          0x60000020 CNT_CODE MEM_EXECUTE MEM_READ 
+$HL,1$            7F10824D4258 F8           CLC
+            7F10824D4259 4809D2       OR	U64 RDX,U64 RDX
+            7F10824D425C 7408         JE	I8 $LK,"7F10824D4266",A="AD:0x7F10824D4266"$ 
+            7F10824D425E 813A49424920 CMP	U32 [RDX],I32 20494249
+            7F10824D4264 7408         JE	I8 $LK,"7F10824D426E",A="AD:0x7F10824D426E"$ 
+            7F10824D4266 4831C9       XOR	U64 RCX,U64 RCX
+            7F10824D4269 4831D2       XOR	U64 RDX,U64 RDX
+            7F10824D426C F9           STC
+            7F10824D426D C3           RET
+            7F10824D426E 48890D560000 MOV	U64 [7F10824D42CB],U64 RCX
+            7F10824D4274 00          
+            7F10824D4275 488915570000 MOV	U64 [7F10824D42D3],U64 RDX
+            7F10824D427B 00          
+            7F10824D427C 48C7C2531040 MOV	U64 RDX,I32 00401053
+            7F10824D4282 00          
+            7F10824D4283 E813000000   CALL	I32 $LK,"7F10824D429B",A="AD:0x7F10824D429B"$ 
+            7F10824D4288 C3           RET
+            7F10824D4289 488B0D430000 MOV	U64 RCX,U64 [7F10824D42D3]
+            7F10824D428F 00          
+            7F10824D4290 488B0C01     MOV	U64 RCX,U64 [RCX+RAX*1]
+            7F10824D4294 488B1C19     MOV	U64 RBX,U64 [RCX+RBX*1]
+            7F10824D4298 FFD3         CALL	U64 RBX
+            7F10824D429A C3           RET
+            7F10824D429B 48C7C0400000 MOV	U64 RAX,I32 00000040
+            7F10824D42A1 00          
+            7F10824D42A2 48C7C3080000 MOV	U64 RBX,I32 00000008
+            7F10824D42A8 00          
+            7F10824D42A9 EBDE         JMP	I8 $LK,"7F10824D4289",A="AD:0x7F10824D4289"$ 
+            7F10824D42AB 0D000A0056   OR	U32 EAX,U32 56000A00
+            7F10824D42B0 006500       ADD	U8 00[RBP],U8 AH
+            7F10824D42B3 7200         JB	I8 $LK,"7F10824D42B5",A="AD:0x7F10824D42B5"$ 
+            7F10824D42B5 7900         JNS	I8 $LK,"7F10824D42B7",A="AD:0x7F10824D42B7"$ 
+            7F10824D42B7 2000         AND	U8 [RAX],U8 AL
+            7F10824D42B9 6200         BOUND	U32 [RAX],U32 EAX
+            7F10824D42BB 61           POPAD
+            7F10824D42BC 007300       ADD	U8 00[RBX],U8 DH
+            7F10824D42BF 690063002100 IMUL2	U32 [RAX],I32 00210063
+            7F10824D42C5 0D000A0000   OR	U32 EAX,U32 00000A00
+            7F10824D42CA 0000         ADD	U8 [RAX],U8 AL
+            7F10824D42CC 0000         ADD	U8 [RAX],U8 AL
+            7F10824D42CE 0000         ADD	U8 [RAX],U8 AL
+            7F10824D42D0 0000         ADD	U8 [RAX],U8 AL
+            7F10824D42D2 0000         ADD	U8 [RAX],U8 AL
+            7F10824D42D4 0000         ADD	U8 [RAX],U8 AL
+            7F10824D42D6 0000         ADD	U8 [RAX],U8 AL
+$HL,0$0.167000s ans=0x00000001=1
+
