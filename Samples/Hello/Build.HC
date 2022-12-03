@@ -1,3 +1,4 @@
+//#include "/Efisource/Samples/EfiBasic.PRJ.Z"
 
 Cd(__DIR__);
 

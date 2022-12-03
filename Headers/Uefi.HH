@@ -28,20 +28,20 @@
  *
  */
 
-class EfiGuid {
+class CEfiGuid {
     U32 Data1;
     U16 Data2;
     U16 Data3;
     U8 Data4[8];
 };
 
-class EfiDevicePath {
+class CEfiDevicePath {
     U8 Type;
     U8 SubType;
     U8 Length[2];
 };
 
-class EfiMemoryDescriptor {
+class CEfiMemoryDescriptor {
     U32 Type;
     U32 Pad;
     U8 * PhysicalStart;
@@ -50,7 +50,7 @@ class EfiMemoryDescriptor {
     U64 Attribute;
 };
 
-class EfiTableHeader {
+class CEfiTableHeader {
     U64 Signature;
     U32 Revision;
     U32 HeaderSize;
@@ -127,7 +127,7 @@ typedef __builtin_va_list va_list;
 /* efisetjmp.h */
 /*
 #ifdef __x86_64__
-class __attribute__((aligned(8))) jmp_buf[1] {
+class C__attribute__((aligned(8))) jmp_buf[1] {
     U64    Rbx;
     U64    Rsp;
     U64    Rbp;
@@ -143,7 +143,7 @@ class __attribute__((aligned(8))) jmp_buf[1] {
 };
 #endif
 #ifdef __aarch64__
-class __attribute__((aligned(8))) jmp_buf[1] {
+class C__attribute__((aligned(8))) jmp_buf[1] {
     U64    X19;
     U64    X20;
     U64    X21;
@@ -173,7 +173,6 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 */
 
 /* efidevp.h */
-#define EFI_DEVICE_PATH_PROTOCOL_GUID { 0x9576e91, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
 #define EFI_DP_TYPE_MASK                    0x7F
 #define EFI_DP_TYPE_UNPACKED                0x80
 #define END_DEVICE_PATH_TYPE                0x7f
@@ -267,7 +266,6 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 #define EFI_INTERNAL_FNC            0x00000002
 #define EFI_INTERNAL_PTR            0x00000004
 
-#define EFI_GLOBAL_VARIABLE             { 0x8BE4DF61, 0x93CA, 0x11d2, {0xAA, 0x0D, 0x00, 0xE0, 0x98, 0x03, 0x2B, 0x8C} }
 #define EFI_VARIABLE_NON_VOLATILE                          0x00000001
 #define EFI_VARIABLE_BOOTSERVICE_ACCESS                    0x00000002
 #define EFI_VARIABLE_RUNTIME_ACCESS                        0x00000004
@@ -281,12 +279,6 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 #define CAPSULE_FLAGS_POPULATE_SYSTEM_TABLE   0x00020000
 #define CAPSULE_FLAGS_INITIATE_RESET          0x00040000
 
-#define MPS_TABLE_GUID                  { 0xeb9d2d2f, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
-#define ACPI_TABLE_GUID                 { 0xeb9d2d30, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
-#define ACPI_20_TABLE_GUID              { 0x8868e871, 0xe4f1, 0x11d3, {0xbc, 0x22, 0x0, 0x80, 0xc7, 0x3c, 0x88, 0x81} }
-#define SMBIOS_TABLE_GUID               { 0xeb9d2d31, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
-#define SMBIOS3_TABLE_GUID              { 0xf2fd1544, 0x9794, 0x4a2c, {0x99, 0x2e,0xe5, 0xbb, 0xcf, 0x20, 0xe3, 0x94} }
-#define SAL_SYSTEM_TABLE_GUID           { 0xeb9d2d32, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
 
 #define EFI_RUNTIME_SERVICES_SIGNATURE  0x56524553544e5552
 #define EFI_RUNTIME_SERVICES_REVISION   (EFI_SPECIFICATION_MAJOR_REVISION<<16) | (EFI_SPECIFICATION_MINOR_REVISION)
@@ -298,7 +290,6 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 #define EFI_SYSTEM_TABLE_REVISION       (EFI_SPECIFICATION_MAJOR_REVISION<<16) | (EFI_SPECIFICATION_MINOR_REVISION)
 
 /* eficon.h */
-#define EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_GUID { 0x387477c2, 0x69c7, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
 #define EFI_BLACK   0x00
 #define EFI_BLUE    0x01
 #define EFI_GREEN   0x02
@@ -374,7 +365,6 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 #define ARROW_UP                            0x2191
 #define ARROW_DOWN                          0x2193
 
-#define EFI_SIMPLE_TEXT_INPUT_PROTOCOL_GUID { 0x387477c1, 0x69c7, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
 #define CHAR_NULL                       0x0000
 #define CHAR_BACKSPACE                  0x0008
 #define CHAR_TAB                        0x0009
@@ -416,12 +406,6 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 #define EFI_PART_USER_DATA              0x0000000000000020
 #define EFI_PART_CRITICAL_USER_DATA     0x0000000000000040
 #define EFI_PART_REDUNDANT_PARTITION    0x0000000000000080
-#define EFI_PART_TYPE_UNUSED_GUID           { 0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} }
-#define EFI_PART_TYPE_EFI_SYSTEM_PART_GUID  { 0xc12a7328, 0xf81f, 0x11d2, {0xba, 0x4b, 0x00, 0xa0, 0xc9, 0x3e, 0xc9, 0x3b} }
-#define EFI_PART_TYPE_LEGACY_MBR_GUID       { 0x024dee41, 0x33e7, 0x11d3, {0x9d, 0x69, 0x00, 0x08, 0xc7, 0x81, 0xf3, 0x9f} }
-
-/* Protocol GUIDs */
-#define INTERNAL_SHELL_GUID         { 0xd65a6b8c, 0x71e5, 0x4df0, {0xa9, 0x09, 0xf0, 0xd2, 0x99, 0x2b, 0x5a, 0xa9} }
 
 // EfiAllocateType
 #define AllocateAnyPages 0
@@ -466,31 +450,19 @@ extern void longjmp(jmp_buf env, U64 value) __attribute__((noreturn));
 
 
 /*** standard input, output and error streams via ConIn, ConOut and StdErr ***/
-class EfiInputType {
+class CEfiInputType {
     U16 ScanCode;
     U16 UnicodeChar;
 };
 
-public _extern U64 efi_input_reset_t(U8 *This, Bool ExtendedVerification);
-public _extern U64 efi_input_read_key_t(U8 *This, EfiInputType *Key);
 
-class EfiSimpleInputInterface {
+class CEfiSimpleInputInterface {
     U64 (*Reset)();
     U64 (*ReadKeyStroke)();
     U8 * WaitForKey;
 };
 
-public _extern U64 efi_text_reset_t(U8 *This, Bool ExtendedVerification);
-public _extern U64 efi_text_output_string_t(U8 *This, U16 *String);
-public _extern U64 efi_text_test_string_t(U8 *This, U16 *String);
-public _extern U64 efi_text_query_mode_t(U8 *This, U64 ModeNumber, U64 *Column, U64 *Row);
-public _extern U64 efi_text_set_mode_t(U8 *This, U64 ModeNumber);
-public _extern U64 efi_text_set_attribute_t(U8 *This, U64 Attribute);
-public _extern U64 efi_text_clear_screen_t(U8 *This);
-public _extern U64 efi_text_set_cursor_t(U8 *This, U64 Column, U64 Row);
-public _extern U64 efi_text_enable_cursor_t(U8 *This,  Bool Enable);
-
-class EfiSimpleTextOutputMode {
+class CEfiSimpleTextOutputMode {
     I32 MaxMode;
     I32 Mode;
     I32 Attribute;
@@ -499,7 +471,7 @@ class EfiSimpleTextOutputMode {
     Bool CursorVisible;
 };
 
-class EfiSimpleTextOutputInterface {
+class CEfiSimpleTextOutputInterface {
     U64 (*Reset)();
     U64 (*OutputString)();
     U64 (*TestString)();
@@ -509,11 +481,11 @@ class EfiSimpleTextOutputInterface {
     U64 (*ClearScreen)();
     U64 (*SetCursorPosition)();
     U64 (*EnableCursor)();
-    EfiSimpleTextOutputMode   *Mode;
+    CEfiSimpleTextOutputMode   *Mode;
 };
 
-/*** Runtime Services ***/
-class EfiTime {
+/*** Runtime Services ***/
+class CEfiTime {
     U16 Year;       /* 1998 - 2XXX */
     U8 Month;      /* 1 - 12 */
     U8 Day;        /* 1 - 31 */
@@ -527,50 +499,25 @@ class EfiTime {
     U8 Pad2;
 };
 
-class EfiTimeCapabilities {
+class CEfiTimeCapabilities {
     U32 Resolution;
     U32 Accuracy;
     Bool SetsToZero;
 };
 
-class EfiCapsuleHeader {
-    EfiGuid  CapsuleGuid;
+class CEfiCapsuleHeader {
+    CEfiGuid  CapsuleGuid;
     U32 HeaderSize;
     U32 Flags;
     U32 CapsuleImageSize;
 };
 
-class EfiCapsuleBlockDescriptor {
+class CEfiCapsuleBlockDescriptor {
     U64 Length;
     U8 *  ContinuationPointer;
 };
 
-public _extern U64 efi_get_time_t(EfiTime *Time, EfiTimeCapabilities *Capabilities);
-public _extern U64 efi_set_time_t(EfiTime *Time);
-public _extern U64 efi_get_wakeup_time_t(Bool *Enable, Bool *Pending, EfiTime *Time);
-public _extern U64 efi_set_wakeup_time_t(Bool Enable, EfiTime *Time);
-public _extern U64 efi_set_virtual_address_map_t(U64 MemoryMapSize, U64 DescriptorSize,
-    U32 DescriptorVersion, EfiMemoryDescriptor *VirtualMap);
-public _extern U64 efi_convert_pointer_t(U64 DebugDisposition, U8 **Address);
-public _extern U64 efi_get_variable_t(U16 *VariableName, EfiGuid *VendorGuid, U32 *Attributes,
-    U64 *DataSize, U8 *Data);
-public _extern U64 efi_get_next_variable_name_t(U64 *VariableNameSize, U16 *VariableName,
-    EfiGuid *VendorGuid);
-public _extern U64 efi_set_variable_t(U16 *VariableName, EfiGuid *VendorGuid, U32 Attributes,
-    U64 DataSize, U8 *Data);
-public _extern U64 efi_get_next_high_mono_t(U64 *Count);
-public _extern U64 efi_reset_system_t(/* EfiResetType */ U32 ResetType, U64 ResetStatus, U64 DataSize,
-    U16 *ResetData);
-public _extern U64 efi_update_capsule_t(EfiCapsuleHeader **CapsuleHeaderArray, U64 CapsuleCount,
-    U8 * ScatterGatherList);
-public _extern U64 efi_query_capsule_capabilities_t(EfiCapsuleHeader **CapsuleHeaderArray, U64 CapsuleCount,
-    U64 *MaximumCapsuleSize, /*EfiResetType */ U32 *ResetType);
-public _extern U64 efi_query_variable_info_t(U32 Attributes, U64 *MaximumVariableStorageSize,
-    U64 *RemainingVariableStorageSize, U64 *MaximumVariableSize);
-
-class EfiRuntimeServices {
-    EfiTableHeader Hdr;
-
+class CEfiRuntimeServices:CEfiTableHeader {
     U64 (*GetTime)();
     U64 (*SetTime)();
     U64 (*GetWakeupTime)();
@@ -591,70 +538,16 @@ class EfiRuntimeServices {
     U64 (*QueryVariableInfo)();
 };
 
-extern EfiRuntimeServices *RT;
 
 /** Boot Services ***/
-class EfiOpenProtocolInfoEntry {
+class CEfiOpenProtocolInfoEntry {
     U8 * AgentHandle;
     U8 * ControllerHandle;
     U32 Attributes;
     U32 OpenCount;
 };
 
-public _extern U64 efi_raise_tpl_t(U64 NewTpl);
-public _extern U64 efi_restore_tpl_t(U64 OldTpl);
-public _extern U64 efi_allocate_pages_t(EfiAllocateType Type, /*efi_memory_type_t*/ U32 MemoryType,
-    U64 NoPages, U8 * *Memory);
-public _extern U64 efi_free_pages_t(U8 * Memory, U64 NoPages);
-public _extern U64 efi_get_memory_map_t(U64 *MemoryMapSize, EfiMemoryDescriptor *MemoryMap,
-    U64 *MapKey, U64 *DescriptorSize, U32 *DescriptorVersion);
-public _extern U64 efi_allocate_pool_t(/*efi_memory_type_t*/ U32 PoolType, U64 Size, U8 **Buffer);
-public _extern U64 efi_free_pool_t(U8 *Buffer);
-U0 (*efi_event_notify_t)(U8 * Event, U8 *Context);
-public _extern U64 efi_create_event_t(U32 Type, U64 NotifyTpl, /*efi_event_notify_t*/ U32 NotifyFunction,
-    U8 *NextContext, U8 * *Event);
-public _extern U64 efi_set_timer_t(U8 * Event, /*efi_timer_delay_t*/ U32 Type, U64 TriggerTime);
-public _extern U64 efi_wait_for_event_t(U64 NumberOfEvents, U8 * *Event, U64 *Index);
-public _extern U64 efi_signal_event_t(U8 * Event);
-public _extern U64 efi_close_event_t(U8 * Event);
-public _extern U64 efi_check_event_t(U8 * Event);
-public _extern U64 efi_handle_protocol_t(U8 * Handle, EfiGuid *Protocol, U8 **Interface);
-public _extern U64 efi_register_protocol_notify_t(EfiGuid *Protocol, U8 * Event, U8 **Registration);
-public _extern U64 efi_locate_handle_t(/*efi_locate_search_type_t*/ U32 SearchType, EfiGuid *Protocol,
-    U8 *SearchKey, U64 *BufferSize, U8 * *Buffer);
-public _extern U64 efi_locate_device_path_t(EfiGuid *Protocol, EfiDevicePath **DevicePath,
-    U8 * *Device);
-public _extern U64 efi_install_configuration_table_t(EfiGuid *Guid, U8 *Table);
-public _extern U64 efi_image_load_t(Bool BootPolicy, U8 * ParentImageHandle, EfiDevicePath *FilePath,
-    U8 *SourceBuffer, U64 SourceSize, U8 * *ImageHandle);
-public _extern U64 efi_image_start_t(U8 * ImageHandle, U64 *ExitDataSize, U16 **ExitData);
-public _extern U64 efi_exit_t(U8 * ImageHandle, U64 ExitStatus, U64 ExitDataSize,
-    U16 *ExitData);
-public _extern U64 efi_exit_boot_services_t(U8 * ImageHandle, U64 MapKey);
-public _extern U64 efi_get_next_monotonic_t(U64 *Count);
-public _extern U64 efi_stall_t(U64 Microseconds);
-public _extern U64 efi_set_watchdog_timer_t(U64 Timeout, U64 WatchdogCode, U64 DataSize,
-    U16 *WatchdogData);
-public _extern U64 efi_connect_controller_t(U8 * ControllerHandle, U8 * *DriverImageHandle,
-    EfiDevicePath *RemainingDevicePath, Bool Recursive);
-public _extern U64 efi_disconnect_controller_t(U8 * ControllerHandle, U8 * DriverImageHandle,
-    U8 * ChildHandle);
-public _extern U64 efi_open_protocol_t(U8 * Handle, EfiGuid *Protocol, U8 **Interface,
-    U8 * AgentHandle, U8 * ControllerHandle, U32 Attributes);
-public _extern U64 efi_close_protocol_t(U8 * Handle, EfiGuid *Protocol, U8 * AgentHandle,
-    U8 * ControllerHandle);
-public _extern U64 efi_open_protocol_information_t(U8 * Handle, EfiGuid *Protocol,
-    EfiOpenProtocolInfoEntry**EntryBuffer, U64 *EntryCount);
-public _extern U64 efi_protocols_per_handle_t(U8 * Handle, EfiGuid ***ProtocolBuffer,
-    U64 *ProtocolBufferCount);
-public _extern U64 efi_locate_handle_buffer_t(/*efi_locate_search_type_t*/ U32 SearchType, EfiGuid *Protocol,
-    U8 *SearchKey, U64 *NoHandles, U8 * **Handles);
-public _extern U64 efi_locate_protocol_t(EfiGuid *Protocol, U8 *Registration, U8 **Interface);
-public _extern U64 efi_calculate_crc32_t(U8 *Data, U64 DataSize, U32 *Crc32);
-
-class EfiBootServices {
-    EfiTableHeader          Hdr;
-
+class CEfiBootServices:CEfiTableHeader {
     U64 (*RaiseTPL)();
     U64 (*RestoreTPL)();
 
@@ -706,21 +599,17 @@ class EfiBootServices {
 
     U64 (*CalculateCrc32)();
 };
-extern EfiBootServices *BS;
 
 /*** Loaded Image Protocol ***/
-#define EFI_LOADED_IMAGE_PROTOCOL_GUID { 0x5B1B31A1, 0x9562, 0x11d2, {0x8E, 0x3F, 0x00, 0xA0, 0xC9, 0x69, 0x72, 0x3B} }
-#define LOADED_IMAGE_PROTOCOL EFI_LOADED_IMAGE_PROTOCOL_GUID
-
 #define EFI_LOADED_IMAGE_PROTOCOL_REVISION  0x1000
 #define EFI_IMAGE_INFORMATION_REVISION  EFI_LOADED_IMAGE_PROTOCOL_REVISION
 
-class EfiLoadedImageProtocol {
+class CEfiLoadedImageProtocol {
     U32 Revision;
     U8 * ParentHandle;
     U8 * SystemTable;
     U8 * DeviceHandle;
-    EfiDevicePath *FilePath;
+    CEfiDevicePath *FilePath;
     U8 * Reserved;
     U32 LoadOptionsSize;
     U8 * LoadOptions;
@@ -732,42 +621,37 @@ class EfiLoadedImageProtocol {
     U32 ImageDataType;
 };
 
-extern EfiLoadedImageProtocol *LIP;
-extern U8 * IM;
 
 /*** System Table ***/
-class EfiConfigurationTable {
-    EfiGuid  VendorGuid;
+class CEfiConfigurationTable {
+    CEfiGuid  VendorGuid;
     U8 * VendorTable;
 };
 
-class EfiSystemTable {
-    EfiTableHeader Hdr;
+class CEfiSystemTable:CEfiTableHeader {
+    U32 NotMentionedIntheSpecButRequired;
 
     U16 *FirmwareVendor;
     U32 FirmwareRevision;
 
     U8 * ConsoleInHandle;
-    EfiSimpleInputInterface *ConIn;
+    CEfiSimpleInputInterface *ConIn;
 
     U8 * ConsoleOutHandle;
-    EfiSimpleTextOutputInterface  *ConOut;
+    CEfiSimpleTextOutputInterface  *ConOut;
 
     U8 * ConsoleErrorHandle;
-    EfiSimpleTextOutputInterface  *StdErr;
+    CEfiSimpleTextOutputInterface  *StdErr;
 
-    EfiRuntimeServices *RuntimeServices;
-    EfiBootServices *BootServices;
+    CEfiRuntimeServices *RuntimeServices;
+    CEfiBootServices *BootServices;
 
     U64 NumberOfTableEntries;
-    EfiConfigurationTable *ConfigurationTable;
+    CEfiConfigurationTable *ConfigurationTable;
 };
-extern EfiSystemTable *ST;
-#define gST ST
+
 
 /*** Simple File System Protocol ***/
-#define EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID { 0x964e5b22, 0x6459, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
-
 #define EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_REVISION  0x00010000
 
 #define EFI_FILE_MODE_READ      0x0000000000000001
@@ -785,22 +669,20 @@ extern EfiSystemTable *ST;
 #define EFI_FILE_PROTOCOL_REVISION         0x00010000
 #define EFI_FILE_HANDLE_REVISION           EFI_FILE_PROTOCOL_REVISION
 
-#define EFI_FILE_INFO_GUID  { 0x9576e92, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
-
 #define FILENAME_MAX 262    /* from FAT spec */
 
-class EfiFileInfo {
+class CEfiFileInfo {
     U64 Size;
     U64 FileSize;
     U64 PhysicalSize;
-    EfiTime CreateTime;
-    EfiTime LastAccessTime;
-    EfiTime ModificationTime;
+    CEfiTime CreateTime;
+    CEfiTime LastAccessTime;
+    CEfiTime ModificationTime;
     U64 Attribute;
     U16 FileName[FILENAME_MAX];
 };
 
-Class EfiFileHandle {
+class CEfiFileHandle {
     U64 Revision;
     U64 (*Open)();
     U64 (*Close)();
@@ -815,31 +697,14 @@ Class EfiFileHandle {
 };
 
 
-public _extern U64 efi_volume_open_t(U8 *This, EfiFileHandle **Root);
-class EfiSimpleFileSystemProtocol {
+class CEfiSimpleFileSystemProtocol {
     U64 Revision;
     U64 (*OpenVolume)();
 };
 
-public _extern U64 efi_file_open_t(EfiFileHandle *File, EfiFileHandle **NewHandle, U16 *FileName,
-    U64 OpenMode, U64 Attributes);
-public _extern U64 efi_file_close_t(EfiFileHandle *File);
-public _extern U64 efi_file_delete_t(EfiFileHandle *File);
-public _extern U64 efi_file_read_t(EfiFileHandle *File, U64 *BufferSize, U8 *Buffer);
-public _extern U64 efi_file_write_t(EfiFileHandle *File, U64 *BufferSize, U8 *Buffer);
-public _extern U64 efi_file_get_pos_t(EfiFileHandle *File, U64 *Position);
-public _extern U64 efi_file_set_pos_t(EfiFileHandle *File, U64 Position);
-public _extern U64 efi_file_get_info_t(EfiFileHandle *File, EfiGuid *InformationType, U64 *BufferSize,
-    U8 *Buffer);
-public _extern U64 efi_file_set_info_t(EfiFileHandle *File, EfiGuid *InformationType, U64 BufferSize,
-    U8 *Buffer);
-public _extern U64 efi_file_flush_t(EfiFileHandle *File);
-
 
 /*** Shell Parameter Protocols ***/
-#define EFI_SHELL_PARAMETERS_PROTOCOL_GUID  { 0x752f3136, 0x4e16, 0x4fdc, {0xa2, 0x2a, 0xe5, 0xf4, 0x68, 0x12, 0xf4, 0xca} }
-
-class EfiShellParametersProtocol {
+class CEfiShellParametersProtocol {
     U16 **Argv;
     U64 Argc;
     U8 * StdIn;
@@ -847,9 +712,7 @@ class EfiShellParametersProtocol {
     U8 * StdErr;
 };
 
-#define SHELL_INTERFACE_PROTOCOL_GUID       { 0x47c7b223, 0xc42a, 0x11d2, {0x8e, 0x57, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
-
-class EfiShellInterfaceProtocol {
+class CEfiShellInterfaceProtocol {
     U8 * ImageHandle;
     U8 * *Info;
     U16 **Argv;
@@ -862,19 +725,12 @@ class EfiShellInterfaceProtocol {
 };
 
 /*** Random Number Generator ***/
-#define EFI_RNG_PROTOCOL_GUID               { 0x3152bca5, 0xeade, 0x433d, {0x86, 0x2e, 0xc0, 0x1c, 0xdc, 0x29, 0x1f, 0x44} }
-
-public _extern U64 efi_rng_get_info_t(U8 *This, U64 *RNGAlgorithmListSize, EfiGuid *RNGAlgorithmList);
-public _extern U64 efi_rng_get_rng_t(U8 *This, EfiGuid *RNGAlgorithm, U64 RNGValueLength, U8 *RNGValue);
-
-class EfiRngProtocol {
+class CEfiRngProtocol {
     U64 (*GetInfo)();
     U64 (*GetRNG)();
 };
 
 /*** Serial IO Protocol ***/
-#define EFI_SERIAL_IO_PROTOCOL_GUID { 0xBB25CF6F, 0xF1D4, 0x11D2, {0x9A, 0x0C, 0x00, 0x90, 0x27, 0x3F, 0xC1, 0xFD} }
-
 #define SERIAL_IO_INTERFACE_REVISION                0x00010000
 #define EFI_SERIAL_CLEAR_TO_SEND                    0x0010
 #define EFI_SERIAL_DATA_SET_READY                   0x0020
@@ -903,7 +759,7 @@ class EfiRngProtocol {
 #define TwoStopBits 3
 
 
-class EfiSerialIoMode {
+class CEfiSerialIoMode {
     U32 ControlMask;
     U32 Timeout;
     U64 BaudRate;
@@ -913,15 +769,7 @@ class EfiSerialIoMode {
     U32 StopBits;
 };
 
-public _extern U64 efi_serial_reset_t(U8 *This);
-public _extern U64 efi_serial_set_attributes_t(U8 *This, U64 BaudRate, U32 ReceiveFifoDepth,
-    U32 Timeout, EfiParityType Parity, U8 DataBits, /*efi_stop_bits_type_t*/ U32 StopBits);
-public _extern U64 efi_serial_set_control_bits_t(U8 *This, U32 Control);
-public _extern U64 efi_serial_get_control_bits_t(U8 *This, U32 *Control);
-public _extern U64 efi_serial_write_t(U8 *This, U64 *BufferSize, U8 *Buffer);
-public _extern U64 efi_serial_read_t(U8 *This, U64 *BufferSize, U8 *Buffer);
-
-class EfiSerialIoProtocol {
+class CEfiSerialIoProtocol {
     U32 Revision;
     U64 (*Reset)();
     U64 (*SetAttributes)();
@@ -929,16 +777,15 @@ class EfiSerialIoProtocol {
     U64 (*GetControl)();
     U64 (*Write)();
     U64 (*Read)();
-    EfiSerialIoMode *Mode;
+    CEfiSerialIoMode *Mode;
 };
 
 /*** Block IO Protocol ***/
-#define EFI_BLOCK_IO_PROTOCOL_GUID { 0x964e5b21, 0x6459, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
 #define EFI_BLOCK_IO_PROTOCOL_REVISION    0x00010000
 #define EFI_BLOCK_IO_INTERFACE_REVISION   EFI_BLOCK_IO_PROTOCOL_REVISION
 
-class EfiBlockIoMedia {
-    U32MediaId;
+class CEfiBlockIoMedia {
+    U32 MediaId;
     Bool RemovableMedia;
     Bool MediaPresent;
     Bool LogicalPartition;
@@ -949,27 +796,21 @@ class EfiBlockIoMedia {
     U64 LastBlock;
 };
 
-public _extern U64 efi_block_reset_t(U8 *This, Bool ExtendedVerification);
-public _extern U64 efi_block_read_t(U8 *This, U32 MediaId, U64 LBA, U64 BufferSize, U8 *Buffer);
-public _extern U64 efi_block_write_t(U8 *This, U32 MediaId, U64 LBA, U64 BufferSize, U8 *Buffer);
-public _extern U64 efi_block_flush_t(U8 *This);
-
-class EfiBlockIo {
+class CEfiBlockIo {
     U64 Revision;
-    EfiBlockIoMedia *Media;
+    CEfiBlockIoMedia *Media;
     U64 (*Reset)();
     U64 (*ReadBlocks)();
     U64 (*WriteBlocks)();
     U64 (*FlushBlocks)();
 };
 
-class EfiBlockFile {
+class CEfiBlockFile {
     U64 offset;
-    EfiBlockIo *bio;
+    CEfiBlockIo *bio;
 };
 
 /*** Graphics Output Protocol (not used, but could be useful to have) ***/
-#define EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID { 0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a } }
 
 // efi_gop_pixel_format_t
 #define PixelRedGreenBlueReserved8BitPerColor 0
@@ -986,49 +827,41 @@ class EfiBlockFile {
 #define EfiGraphicsOutputBltOperationMax 4
  
 
-class EfiGopPixelBitmask {
+class CEfiGopPixelBitmask {
   U32 RedMask;
   U32 GreenMask;
   U32 BlueMask;
   U32 ReservedMask;
 };
 
-class EfiGopModeInfo {
+class CEfiGopModeInfo {
     U32 Version;
     U32 HorizontalResolution;
     U32 VerticalResolution;
     //efi_gop_pixel_format_t  
-    u32 PixelFormat;
-    EfiGopPixelBitmask PixelInformation;
+    U32 PixelFormat;
+    CEfiGopPixelBitmask PixelInformation;
     U32 PixelsPerScanLine;
 };
 
-class EfiGopMode {
+class CEfiGopMode {
     U32 MaxMode;
     U32 Mode;
-    EfiGopModeInfo *Information;
+    CEfiGopModeInfo *Information;
     U64 SizeOfInfo;
     U8 * FrameBufferBase;
     U64 FrameBufferSize;
 };
 
-public _extern U64 efi_gop_query_mode_t(U8 *This, U32 ModeNumber, U64 *SizeOfInfo,
-    EfiGopModeInfo **Info);
-public _extern U64 efi_gop_set_mode_t(U8 *This, U32 ModeNumber);
-public _extern U64 efi_gop_blt_t(U8 *This, U32 *BltBuffer, /*efi_gop_blt_operation_t*/ U32 BltOperation,
-    U64 SourceX, U64 SourceY, U64 DestinationX, U64 DestionationY, U64 Width, U64 Height, U64 Delta);
-
-class efi_gop_t {
+class Cefi_gop_t {
     U64 (*QueryMode)();
     U64 (*SetMode)();
     U64 (*Blt)();
-    EfiGopMode *Mode;
+    CEfiGopMode *Mode;
 };
 
 /*** Simple Pointer Protocol (not used, but could be useful to have) ***/
-#define EFI_SIMPLE_POINTER_PROTOCOL_GUID { 0x31878c87, 0xb75, 0x11d5, { 0x9a, 0x4f, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d } }
-
-class EfiSimplePointerState {
+class CEfiSimplePointerState {
     I32 RelativeMovementX;
     I32 RelativeMovementY;
     I32 RelativeMovementZ;
@@ -1036,7 +869,7 @@ class EfiSimplePointerState {
     Bool RightButton;
 };
 
-class EfiSimplePointerMode {
+class CEfiSimplePointerMode {
     U64 ResolutionX;
     U64 ResolutionY;
     U64 ResolutionZ;
@@ -1044,20 +877,15 @@ class EfiSimplePointerMode {
     Bool RightButton;
 };
 
-public _extern U64 efi_simple_pointer_reset_t (U8 *This, Bool ExtendedVerification);
-public _extern U64 efi_simple_pointer_get_state_t (U8 *This, EfiSimplePointerState *State);
-
-class EfiSimplePointerProtocol {
+class CEfiSimplePointerProtocol {
     U64 (*Reset)();
     U64 (*GetState)();
     U8 * WaitForInput;
-    EfiSimplePointerMode *Mode;
+    CEfiSimplePointerMode *Mode;
 };
 
 /*** Option ROM Protocol (not used, but could be useful to have) ***/
-#define EFI_PCI_OPTION_ROM_TABLE_GUID { 0x7462660f, 0x1cbd, 0x48da, {0xad, 0x11, 0x91, 0x71, 0x79, 0x13, 0x83, 0x1c} }
-
-class EfiPciOptionRomDescriptor {
+class CEfiPciOptionRomDescriptor {
   U8 * RomAddress;
   //efi_memory_type_t                 
   U32 MemoryType;
@@ -1070,30 +898,207 @@ class EfiPciOptionRomDescriptor {
   Bool DontLoadEfiRom;
 };
 
-class EfiPciOptionRomTable {
+class CEfiPciOptionRomTable {
   U64 PciOptionRomCount;
-  EfiPciOptionRomDescriptor   *PciOptionRomDescriptors;
+  CEfiPciOptionRomDescriptor   *PciOptionRomDescriptors;
 };
 
 /*** GPT partitioning table (not used, but could be useful to have) ***/
-class EfiPartitionTableHeader {
-    EfiTableHeader  Header;
+class CEfiPartitionTableHeader:CEfiTableHeader {
     U64 MyLBA;
     U64 AlternateLBA;
     U64 FirstUsableLBA;
     U64 LastUsableLBA;
-    EfiGuid DiskGUID;
+    CEfiGuid DiskGUID;
     U64 PartitionEntryLBA;
     U32 NumberOfPartitionEntries;
     U32 SizeOfPartitionEntry;
     U32 PartitionEntryArrayCRC32;
 };
 
-class EfiPartitionEntry {
-    EfiGuid PartitionTypeGUID;
-    EfiGuid UniquePartitionGUID;
+class CEfiPartitionEntry {
+    CEfiGuid PartitionTypeGUID;
+    CEfiGuid UniquePartitionGUID;
     U64 StartingLBA;
     U64 EndingLBA;
     U64 Attributes;
     U16 PartitionName[36];
 };
+
+/** Variables */
+
+//extern CEfiRuntimeServices *RT;
+//extern CEfiBootServices *BS;
+//extern CEfiLoadedImageProtocol *LIP;
+//extern U8 * IM;
+//extern CEfiSystemTable *ST;
+
+/** GUIDS
+Obviously during the design of UEFI a simple enum of 1-20 wasn't complex
+enough so they introduced a GUID  
+*/
+
+#define EFI_PCI_OPTION_ROM_TABLE_GUID { 0x7462660f, 0x1cbd, 0x48da, {0xad, 0x11, 0x91, 0x71, 0x79, 0x13, 0x83, 0x1c} }
+#define EFI_SIMPLE_POINTER_PROTOCOL_GUID { 0x31878c87, 0xb75, 0x11d5, { 0x9a, 0x4f, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d } }
+#define EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID { 0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a } }
+#define EFI_BLOCK_IO_PROTOCOL_GUID { 0x964e5b21, 0x6459, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define EFI_SERIAL_IO_PROTOCOL_GUID { 0xBB25CF6F, 0xF1D4, 0x11D2, {0x9A, 0x0C, 0x00, 0x90, 0x27, 0x3F, 0xC1, 0xFD} }
+#define EFI_RNG_PROTOCOL_GUID               { 0x3152bca5, 0xeade, 0x433d, {0x86, 0x2e, 0xc0, 0x1c, 0xdc, 0x29, 0x1f, 0x44} }
+#define SHELL_INTERFACE_PROTOCOL_GUID       { 0x47c7b223, 0xc42a, 0x11d2, {0x8e, 0x57, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define EFI_SHELL_PARAMETERS_PROTOCOL_GUID  { 0x752f3136, 0x4e16, 0x4fdc, {0xa2, 0x2a, 0xe5, 0xf4, 0x68, 0x12, 0xf4, 0xca} }
+#define EFI_FILE_INFO_GUID  { 0x9576e92, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID { 0x964e5b22, 0x6459, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define EFI_PART_TYPE_UNUSED_GUID           { 0x00000000, 0x0000, 0x0000, {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00} }
+#define EFI_PART_TYPE_EFI_SYSTEM_PART_GUID  { 0xc12a7328, 0xf81f, 0x11d2, {0xba, 0x4b, 0x00, 0xa0, 0xc9, 0x3e, 0xc9, 0x3b} }
+#define EFI_PART_TYPE_LEGACY_MBR_GUID       { 0x024dee41, 0x33e7, 0x11d3, {0x9d, 0x69, 0x00, 0x08, 0xc7, 0x81, 0xf3, 0x9f} }
+
+/* Protocol GUIDs */
+#define INTERNAL_SHELL_GUID         { 0xd65a6b8c, 0x71e5, 0x4df0, {0xa9, 0x09, 0xf0, 0xd2, 0x99, 0x2b, 0x5a, 0xa9} }
+#define EFI_SIMPLE_TEXT_INPUT_PROTOCOL_GUID { 0x387477c1, 0x69c7, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_GUID { 0x387477c2, 0x69c7, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define MPS_TABLE_GUID                  { 0xeb9d2d2f, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
+#define ACPI_TABLE_GUID                 { 0xeb9d2d30, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
+#define ACPI_20_TABLE_GUID              { 0x8868e871, 0xe4f1, 0x11d3, {0xbc, 0x22, 0x0, 0x80, 0xc7, 0x3c, 0x88, 0x81} }
+#define SMBIOS_TABLE_GUID               { 0xeb9d2d31, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
+#define SMBIOS3_TABLE_GUID              { 0xf2fd1544, 0x9794, 0x4a2c, {0x99, 0x2e,0xe5, 0xbb, 0xcf, 0x20, 0xe3, 0x94} }
+#define SAL_SYSTEM_TABLE_GUID           { 0xeb9d2d32, 0x2d88, 0x11d3, {0x9a, 0x16, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d} }
+#define EFI_DEVICE_PATH_PROTOCOL_GUID { 0x9576e91, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
+#define EFI_GLOBAL_VARIABLE             { 0x8BE4DF61, 0x93CA, 0x11d2, {0xAA, 0x0D, 0x00, 0xE0, 0x98, 0x03, 0x2B, 0x8C} }
+#define EFI_LOADED_IMAGE_PROTOCOL_GUID { 0x5B1B31A1, 0x9562, 0x11d2, {0x8E, 0x3F, 0x00, 0xA0, 0xC9, 0x69, 0x72, 0x3B} }
+#define LOADED_IMAGE_PROTOCOL EFI_LOADED_IMAGE_PROTOCOL_GUID
+
+
+
+/** Functions */
+
+U64 (*efi_input_reset_t)(U8 *This, Bool ExtendedVerification);
+U64 (*efi_input_read_key_t)(U8 *This, CEfiInputType *Key);
+
+
+// U64 (*wrap1)(U64 number = 99, U64 p2 = NULL, U64 p3 = NULL, U64 p4 = NULL, U64 function = &dummyFunction);
+// U64 EfiCallWrapper(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RCX this, U64 reg RBX dest) {
+
+
+// Implemented in the wrapper pattern
+//U64 (*efi_text_reset_t)(Bool ExtendedVerification, U64 p2 = NULL, U64 p3 = NULL, CEfiSimpleTextOutputInterface *This = efi.ConOut, U8* fctn = efi.ConOut->Reset);
+// CEfiSimpleTextOutputInterface
+/*
+U64 (*efi_text_output_string_t)(CEfiSimpleTextOutputInterface *This, U16 *String);
+U64 (*efi_text_test_string_t)(CEfiSimpleTextOutputInterface *This, U16 *String);
+U64 (*efi_text_query_mode_t)(CEfiSimpleTextOutputInterface *This, U64 ModeNumber, U64 *Column, U64 *Row);
+U64 (*efi_text_set_mode_t)(CEfiSimpleTextOutputInterface *This, U64 ModeNumber);
+U64 (*efi_text_set_attribute_t)(CEfiSimpleTextOutputInterface *This, U64 Attribute);
+U64 (*efi_text_clear_screen_t)(CEfiSimpleTextOutputInterface *This);
+U64 (*efi_text_set_cursor_t)(CEfiSimpleTextOutputInterface *This, U64 Column, U64 Row);
+U64 (*efi_text_enable_cursor_t)(CEfiSimpleTextOutputInterface *This,  Bool Enable);
+*/
+
+/*
+U64 (*efi_text_reset_t)(U8 *This, Bool ExtendedVerification);
+U64 (*efi_text_output_string_t)(U8 *This, U16 *String);
+U64 (*efi_text_test_string_t)(U8 *This, U16 *String);
+U64 (*efi_text_query_mode_t)(U8 *This, U64 ModeNumber, U64 *Column, U64 *Row);
+U64 (*efi_text_set_mode_t)(U8 *This, U64 ModeNumber);
+U64 (*efi_text_set_attribute_t)(U8 *This, U64 Attribute);
+U64 (*efi_text_clear_screen_t)(U8 *This);
+U64 (*efi_text_set_cursor_t)(U8 *This, U64 Column, U64 Row);
+U64 (*efi_text_enable_cursor_t)(U8 *This,  Bool Enable);
+*/
+
+public extern U64 efi_get_time_t(CEfiTime *Time, CEfiTimeCapabilities *Capabilities);
+public extern U64 efi_set_time_t(CEfiTime *Time);
+public extern U64 efi_get_wakeup_time_t(Bool *Enable, Bool *Pending, CEfiTime *Time);
+public extern U64 efi_set_wakeup_time_t(Bool Enable, CEfiTime *Time);
+public extern U64 efi_set_virtual_address_map_t(U64 MemoryMapSize, U64 DescriptorSize,  U32 DescriptorVersion, CEfiMemoryDescriptor *VirtualMap);
+public extern U64 efi_convert_pointer_t(U64 DebugDisposition, U8 **Address);
+public extern U64 efi_get_variable_t(U16 *VariableName, CEfiGuid *VendorGuid, U32 *Attributes, U64 *DataSize, U8 *Data);
+public extern U64 efi_get_next_variable_name_t(U64 *VariableNameSize, U16 *VariableName,  CEfiGuid *VendorGuid);
+public extern U64 efi_set_variable_t(U16 *VariableName, CEfiGuid *VendorGuid, U32 Attributes,  U64 DataSize, U8 *Data);
+public extern U64 efi_get_next_high_mono_t(U64 *Count);
+public extern U64 efi_reset_system_t(/* EfiResetType */ U32 ResetType, U64 ResetStatus, U64 DataSize, U16 *ResetData);
+public extern U64 efi_update_capsule_t(CEfiCapsuleHeader **CapsuleHeaderArray, U64 CapsuleCount,  U8 * ScatterGatherList);
+public extern U64 efi_query_capsule_capabilities_t(CEfiCapsuleHeader **CapsuleHeaderArray, U64 CapsuleCount, U64 *MaximumCapsuleSize, /*EfiResetType */ U32 *ResetType);
+public extern U64 efi_query_variable_info_t(U32 Attributes, U64 *MaximumVariableStorageSize, U64 *RemainingVariableStorageSize, U64 *MaximumVariableSize);
+
+
+/*
+public extern U64 efi_raise_tpl_t(U64 NewTpl);
+public extern U64 efi_restore_tpl_t(U64 OldTpl);
+public extern U64 efi_allocate_pages_t(/* EfiAllocateType*/ U32 Type, /*efi_memory_type_t*/ U32 MemoryType, U64 NoPages, U8 * *Memory);
+public extern U64 efi_free_pages_t(U8 * Memory, U64 NoPages);
+public extern U64 efi_get_memory_map_t(U64 *MemoryMapSize, CEfiMemoryDescriptor *MemoryMap, U64 *MapKey, U64 *DescriptorSize, U32 *DescriptorVersion);
+public extern U64 efi_allocate_pool_t(/*efi_memory_type_t*/ U32 PoolType, U64 Size, U8 **Buffer);
+public extern U64 efi_free_pool_t(U8 *Buffer);
+U0 (*efi_event_notify_t)(U8 * Event, U8 *Context);
+public extern U64 efi_create_event_t(U32 Type, U64 NotifyTpl, /*efi_event_notify_t*/ U32 NotifyFunction,  U8 *NextContext, U8 * *Event);
+public extern U64 efi_set_timer_t(U8 * Event, /*efi_timer_delay_t*/ U32 Type, U64 TriggerTime);
+public extern U64 efi_wait_for_event_t(U64 NumberOfEvents, U8 * *Event, U64 *Index);
+public extern U64 efi_signal_event_t(U8 * Event);
+public extern U64 efi_close_event_t(U8 * Event);
+public extern U64 efi_check_event_t(U8 * Event);
+public extern U64 efi_handle_protocol_t(U8 * Handle, CEfiGuid *Protocol, U8 **Interface);
+public extern U64 efi_register_protocol_notify_t(CEfiGuid *Protocol, U8 * Event, U8 **Registration);
+public extern U64 efi_locate_handle_t(/*efi_locate_search_type_t*/ U32 SearchType, CEfiGuid *Protocol,  U8 *SearchKey, U64 *BufferSize, U8 * *Buffer);
+public extern U64 efi_locate_device_path_t(CEfiGuid *Protocol, CEfiDevicePath **DevicePath,  U8 * *Device);
+public extern U64 efi_install_configuration_table_t(CEfiGuid *Guid, U8 *Table);
+public extern U64 efi_image_load_t(Bool BootPolicy, U8 * ParentImageHandle, CEfiDevicePath *FilePath, U8 *SourceBuffer, U64 SourceSize, U8 * *ImageHandle);
+public extern U64 efi_image_start_t(U8 * ImageHandle, U64 *ExitDataSize, U16 **ExitData);
+public extern U64 efi_exit_t(U8 * ImageHandle, U64 ExitStatus, U64 ExitDataSize, U16 *ExitData);
+public extern U64 efi_exit_boot_services_t(U8 * ImageHandle, U64 MapKey);
+public extern U64 efi_get_next_monotonic_t(U64 *Count);
+public extern U64 efi_stall_t(U64 Microseconds);
+public extern U64 efi_set_watchdog_timer_t(U64 Timeout, U64 WatchdogCode, U64 DataSize, U16 *WatchdogData);
+public extern U64 efi_connect_controller_t(U8 * ControllerHandle, U8 * *DriverImageHandle, CEfiDevicePath *RemainingDevicePath, Bool Recursive);
+public extern U64 efi_disconnect_controller_t(U8 * ControllerHandle, U8 * DriverImageHandle, U8 * ChildHandle);
+public extern U64 efi_open_protocol_t(U8 * Handle, CEfiGuid *Protocol, U8 **Interface, U8 * AgentHandle, U8 * ControllerHandle, U32 Attributes);
+public extern U64 efi_close_protocol_t(U8 * Handle, CEfiGuid *Protocol, U8 * AgentHandle, U8 * ControllerHandle);
+public extern U64 efi_open_protocol_information_t(U8 * Handle, CEfiGuid *Protocol,  CEfiOpenProtocolInfoEntry **EntryBuffer, U64 *EntryCount);
+public extern U64 efi_protocols_per_handle_t(U8 * Handle, CEfiGuid ***ProtocolBuffer, U64 *ProtocolBufferCount);
+public extern U64 efi_locate_handle_buffer_t(/*efi_locate_search_type_t*/ U32 SearchType, CEfiGuid *Protocol, U8 *SearchKey, U64 *NoHandles, U8 * **Handles);
+public extern U64 efi_locate_protocol_t(CEfiGuid *Protocol, U8 *Registration, U8 **Interface);
+public extern U64 efi_calculate_crc32_t(U8 *Data, U64 DataSize, U32 *Crc32);
+*/
+
+public extern U64 efi_volume_open_t(U8 *This, CEfiFileHandle **Root);
+
+
+
+public extern U64 efi_file_open_t(CEfiFileHandle *File, CEfiFileHandle **NewHandle, U16 *FileName, U64 OpenMode, U64 Attributes);
+public extern U64 efi_file_close_t(CEfiFileHandle *File);
+public extern U64 efi_file_delete_t(CEfiFileHandle *File);
+public extern U64 efi_file_read_t(CEfiFileHandle *File, U64 *BufferSize, U8 *Buffer);
+public extern U64 efi_file_write_t(CEfiFileHandle *File, U64 *BufferSize, U8 *Buffer);
+public extern U64 efi_file_get_pos_t(CEfiFileHandle *File, U64 *Position);
+public extern U64 efi_file_set_pos_t(CEfiFileHandle *File, U64 Position);
+public extern U64 efi_file_get_info_t(CEfiFileHandle *File, CEfiGuid *InformationType, U64 *BufferSize, U8 *Buffer);
+public extern U64 efi_file_set_info_t(CEfiFileHandle *File, CEfiGuid *InformationType, U64 BufferSize, U8 *Buffer);
+public extern U64 efi_file_flush_t(CEfiFileHandle *File);
+
+
+
+public extern U64 efi_rng_get_info_t(U8 *This, U64 *RNGAlgorithmListSize, CEfiGuid *RNGAlgorithmList);
+public extern U64 efi_rng_get_rng_t(U8 *This, CEfiGuid *RNGAlgorithm, U64 RNGValueLength, U8 *RNGValue);
+
+
+public extern U64 efi_serial_reset_t(U8 *This);
+public extern U64 efi_serial_set_attributes_t(U8 *This, U64 BaudRate, U32 ReceiveFifoDepth, U32 Timeout, /*EfiParityType*/ U32 Parity, U8 DataBits, /*efi_stop_bits_type_t*/ U32 StopBits);
+public extern U64 efi_serial_set_control_bits_t(U8 *This, U32 Control);
+public extern U64 efi_serial_get_control_bits_t(U8 *This, U32 *Control);
+public extern U64 efi_serial_write_t(U8 *This, U64 *BufferSize, U8 *Buffer);
+public extern U64 efi_serial_read_t(U8 *This, U64 *BufferSize, U8 *Buffer);
+
+
+public extern U64 efi_block_reset_t(U8 *This, Bool ExtendedVerification);
+public extern U64 efi_block_read_t(U8 *This, U32 MediaId, U64 LBA, U64 BufferSize, U8 *Buffer);
+public extern U64 efi_block_write_t(U8 *This, U32 MediaId, U64 LBA, U64 BufferSize, U8 *Buffer);
+public extern U64 efi_block_flush_t(U8 *This);
+
+
+public extern U64 efi_gop_query_mode_t(U8 *This, U32 ModeNumber, U64 *SizeOfInfo,  CEfiGopModeInfo **Info);
+public extern U64 efi_gop_set_mode_t(U8 *This, U32 ModeNumber);
+public extern U64 efi_gop_blt_t(U8 *This, U32 *BltBuffer, /*efi_gop_blt_operation_t*/ U32 BltOperation, U64 SourceX, U64 SourceY, U64 DestinationX, U64 DestionationY, U64 Width, U64 Height, U64 Delta);
+
+
+public extern U64 efi_simple_pointer_reset_t (U8 *This, Bool ExtendedVerification);
+public extern U64 efi_simple_pointer_get_state_t (U8 *This, CEfiSimplePointerState *State);
+

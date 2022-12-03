@@ -1,3 +1,4 @@
+#include "/Efisource/File/EfiFiles.PRJ.Z"
 Cd(__DIR__);
 
 // Standard HolyC Compile produces EfiAsm.BIN.Z

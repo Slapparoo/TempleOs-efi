@@ -1,7 +1,9 @@
 #include "/Efisource/Headers/EfiKernelA.HH";
+#include "/Efisource/Headers/Uefi.HH";
+
 
 // Efi application entry
-
+/*
 class CEfiGuid {
   U32 Data1;
   U16 Data2;
@@ -24,11 +26,12 @@ class CEfiMemoryDescriptor {
   U64 NumberOfPages;
   U64 Attribute;  
 };
-
+*/
 /* efisetjmp.h */
 /* efidevp.h */
 
 /* Std input */
+/*
 class CEfiInputKey {
   U16 ScanCode;
   U16 UnicodeChar;
@@ -66,7 +69,8 @@ class CEfiSimpleTextOutputInterface {
 }
 
 
-// This is the main structure provied to the applciation by UEFI
+
+// This should always be loaded to a memeoty address of 0x20494249
 class CEfiSystemTable:CEfiTableHeader {
 //  CEfiTableHeader Hdr;
   U32;  // some opadding to line things up? Maybe the extends dosen't line up the same 32bit align?
@@ -88,17 +92,31 @@ class CEfiSystemTable:CEfiTableHeader {
 #assert sizeof(CEfiTableHeader)==0x18
 #assert sizeof(CEfiSystemTable)==0x74  
 #assert sizeof(CEfiSimpleTextOutputInterface)==0x50
-
+*/
 
 class CApplicationPointers {
   CEfiSystemTable *efi;
   U8 *imageHandle;
-  U8 *appPointer; // hopefully the entry to the application
-  U8 *stackPointer; // hopefully the entry to the application
+//  U8 *appPointer; // hopefully the entry to the application
+  U8 *stackPointer; // hopefully the entry to the application
 };
 
 public CApplicationPointers appPtrs;
 public extern U64 AppEntry();
+public extern U64 EfiCallWrapper(U64 p2, U64 p3, U64 p4, U64 this, U64 dest);
 
 
+U0 printHexU8(U8 key);
+U0 printHexU16(U16 key);
+U0 printHexU32(U32 key);
+U0 printHexU64(U64 key);
+
+public CEfiSimpleTextOutputInterface *ConOut;// = appPtrs.efi->ConOut;
+public CEfiBootServices *BootServices; // appPtrs.efi->BootServices
+
+
+/*
+U64 (*efi_text_reset_t)(Bool ExtendedVerification, U64 p2 = NULL, U64 p3 = NULL, 
+      CEfiSimpleTextOutputInterface *This = ConOut, U8* fctn = ConOut->Reset);
+*/
 

@@ -1,4 +1,7 @@
 
+#define APPLICATION_ADDRESS 0x401000
+
+
 U16i union U16
 {
   I8i	i8[2];
@@ -71,4 +74,6 @@ I64i union I64
 #define STR_LEN 144
 
 
-
+public extern U0 Print(U8 *fmt,...);
+
+

@@ -1,8 +1,5 @@
 #include "/Efisource/File/EfiFile.HH"
 
-
-
-
 U8 * efiDataString;
 
 #exe{Option(OPTf_NO_REG_VAR, OFF);}
@@ -133,8 +130,8 @@ U0 printCPeSectionHeader(CPeSectionHeader *peSectionHeader)
     printCharacteristics(peSectionHeader);
     "\n";
 
-    if (peSectionHeader->Characteristics & IMAGE_SCN_MEM_EXECUTE)
-      Un(&efiDataString[peSectionHeader->PointerToRawData], peSectionHeader->VirtualSize);
+//    if (peSectionHeader->Characteristics & IMAGE_SCN_MEM_EXECUTE)
+//      Un(&efiDataString[peSectionHeader->PointerToRawData], peSectionHeader->VirtualSize);
 }
 
 U0 printPeOptionalheader(CPe32OptionalHeader *pe32OptionalHeader, CPeImageDataDirectory *pPeImageDataDirectorys, 
@@ -195,7 +192,7 @@ U0 printPeOptionalheader(CPe32OptionalHeader *pe32OptionalHeader, CPeImageDataDi
     }
 }
 
-
+/*
 // so I can do an initial reconstruct from blobbys
 U0 dumpSectionBlobsToFile(CPeSectionHeader *peSectionHeader, CPeHeader *peHeader)
 {
@@ -211,14 +208,13 @@ U0 dumpSectionBlobsToFile(CPeSectionHeader *peSectionHeader, CPeHeader *peHeader
         FileWrite(fName, &efiDataString[whichSectionHeader->PointerToRawData], whichSectionHeader->SizeOfRawData);
     }
 }
-
-/**
- * Dump out a efi file
 */
 
 U0 EfiFileDump(U8 * filename) {
-  U8 *efiFName =ExtDft(filename, "efi");
+  U8 * efiFName = ExtDft(filename, "efi");
   U64 sz = 0;
+
+  "Dumping %s \n", efiFName;
 
   efiDataString = FileRead(efiFName, &sz);
 
@@ -253,10 +249,10 @@ U0 EfiFileDump(U8 * filename) {
   "peImageDataDirectorys  %p %d\n", peImageDataDirectorys, peImageDataDirectorys - efiDataString;
   "peSectionHeader        %p %d\n", peSectionHeader, peSectionHeader - efiDataString;
 
-    printPeHeader(peHeader);
+  printPeHeader(peHeader);
 
-    printPeOptionalheader(pe32OptionalHeader, peImageDataDirectorys, peSectionHeader, peHeader);
+  printPeOptionalheader(pe32OptionalHeader, peImageDataDirectorys, peSectionHeader, peHeader);
 
-    Free(efiFName);
-    Free(efiDataString);
+  Free(efiFName);
+  Free(efiDataString);
 }

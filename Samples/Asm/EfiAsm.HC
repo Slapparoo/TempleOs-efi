@@ -7,9 +7,10 @@ asm {
 
     PUSH RBP
     MOV  RBP, RSP
-    MOV  RDI, RCX  // ImageHandle
+    MOV  RDI, RCX  // ImageHandle
     MOV  R11, RDX  // efi ptr
     MOV  RCX, R11
+
     
     MOV RCX, [RDX + 0x40]  // 0x40 is ConOut
     MOV RBX, [RCX + 0x8]  // 0x8 is OutPutString
@@ -33,5 +34,6 @@ asm {
 STR_MSG:
     // Each char is U16 not U8
     DU16 'H','e','l','l','o','\n', 0;   
+//    DU8 0x100000 DUP(0);
 };
 

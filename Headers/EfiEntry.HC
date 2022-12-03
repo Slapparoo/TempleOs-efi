@@ -1,7 +1,7 @@
 // This needs to be the EFi entry point to capture the pointer values passed in
-public extern U64 EfiEntry(U64 efiSystemTable, U64 imageHandle, U64 appPtr, U64 stackPtr) {
+public extern U64 EfiEntry(U64 efiSystemTable, U64 imageHandle, U64 stackPtr) {
 
-
+/*
 #exe{Option(OPTf_WARN_DUP_TYPES, OFF);}
 asm {
   USE64
@@ -12,19 +12,20 @@ asm {
     // Align to 16 bytes   
     AND  RAX, 0xFFFFFFFFFFFFFFF0
 }
-
+*/
 // fall through
 U64 _Entry() {
   // 16 byte align the stack
   // capture the values passed in by Efi
   AND RSP, 0xFFFFFFFFFFFFFFF0
+//  MOV RAX, U64 0x401000
 
   U64 reg RCX imageHandle;
   U64 reg RDX efiPtr;
-  U64 reg RAX appPtr;
+//  U64 reg RAX appPtr;
   U64 reg RBP stackPtr;
 
-  return EfiEntry(efiPtr, imageHandle, appPtr, stackPtr);
+  return EfiEntry(efiPtr, imageHandle, stackPtr);
 }
 #exe{Option(OPTf_WARN_DUP_TYPES, ON);}
 
@@ -33,7 +34,7 @@ U64 _Entry() {
 /*
 This is identical to the HolyC Implementation
 */
-/*
+/*
 asm {
   USE64
     // capture application pointer
