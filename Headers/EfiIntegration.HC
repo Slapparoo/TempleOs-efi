@@ -1,17 +1,35 @@
 #include "/Efisource/Headers/Efi.HH";
-//PassTrace;
+
+
 CApplicationPointers appPtrs;
 CEfiSimpleTextOutputInterface *ConOut;// = appPtrs.efi->ConOut;
-CEfiBootServices *BootServices; // appPtrs.efi->BootServices
+CEfiBootServices *BS; // appPtrs.efi->BootServices
+CEfiRuntimeServices *RT; // appPtrs.efi->BootServices
+CEfiSystemTable *ST;
+CEfiLoadedImageProtocol LoadedImageProtocol_;
+CEfiLoadedImageProtocol * LoadedImageProtocol;
+CEfiGop * GOP;// = FixPtr(&gop);
+
+
+CEfiGuid GraphicsGuid_ = EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID;
+CEfiGuid *GraphicsGuid;
+
+CEfiGuid LoadedImageGuid_ = EFI_LOADED_IMAGE_PROTOCOL_GUID;
+CEfiGuid *LoadedImageGuid;
+
+
+U16 wchar[STR_LEN]; 
+U16 * lWchar;
+U8* hexChars = "0123456789ABCDEF";
 
 
 // very basic char to wchar (probably alpha letters only)
 U0 ToWChar(U8 * src, U16 *dst) {
   for (; *src != 0; src++, dst++) {
-    *dst = *src(U16) & 0xFF;
+    *dst = (*src & 0xFF)(U16);
   }
-  dst++ ;
-  *dst = 0;
+//  dst++ ;
+  *dst++ = 0;
 }
 
 
@@ -24,32 +42,56 @@ The U64 reg RCX p1 indicates to teh compiler you want that variable in that regi
 This isn't really ment to be called directly usedefine spring board method and use that instead
 
 */
-#exe{
-  Option(OPTf_WARN_UNUSED_VAR, OFF); 
-  Option(OPTf_WARN_DUP_TYPES, OFF);
+#exe{Option(OPTf_WARN_DUP_TYPES, OFF);}
+#exe{Option(OPTf_WARN_UNUSED_VAR, OFF);}
+
+
+U64 EfiCallWrapperOrdered(U64 reg RCX P1, U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RBX dest) {
+// Create 4 * U64 in the methods stack
+  U64 pad[4];
+
+  // 16 byte align
+  AND  RSP, 0xFFFFFFFFFFFFFFF0
+  
+  XOR  RAX, RAX
+  CALL RBX
+
+  MOV  RSP, RBP
 }
+
 
 U64 EfiCallWrapper(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RCX this, U64 reg RBX dest) {
 // Create 4 * U64 in the methods stack
-//  U64 reg RAX res = 0;
+  U64 pad[4];
+
+  // 16 byte align
+  AND  RSP, 0xFFFFFFFFFFFFFFF0
+  
+  XOR  RAX, RAX
+  CALL RBX
+
+  MOV  RSP, RBP
+}
+
+/*
+U64 EfiCallWrapper(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RCX this, U64 reg RBX dest) {
+// Create 4 * U64 in the methods stack
   U64 pad[4];
   
   XOR  RAX, RAX
   CALL RBX
 
   MOV  RSP, RBP
-//  return res;
 }
-#exe{Option(OPTf_WARN_DUP_TYPES, ON);}
-#exe{Option(OPTf_WARN_UNUSED_VAR, ON);}
-
+*/
 
 public U64 EfiPrint(U16 *wString) {
-  return EfiCallWrapper(wString, 0, 0, appPtrs.efi->ConOut, appPtrs.efi->ConOut->OutputString);
+//  return EfiCallWrapper(wString, 0, 0, appPtrs.efi->ConOut, appPtrs.efi->ConOut->OutputString);
+  return EfiCallWrapper(wString, 0, 0, ConOut, ConOut->OutputString);
 }
 
-U16 wchar[STR_LEN]; 
-U8* hexChars = "0123456789ABCDEF";
+#exe{Option(OPTf_WARN_DUP_TYPES, ON);}
+#exe{Option(OPTf_WARN_UNUSED_VAR, ON);}
 
 
 /**
@@ -84,22 +126,35 @@ U0 Print(U8 *fmt,...) {
 
 
   fmt = FixPtr(fmt);
-  U16 wChr = FixPtr(wchar);  
 
-  ToWChar(fmt, wChr);
-
-  EfiPrint(wChr);
+  ToWChar(fmt, lWchar);
+
+  EfiPrint(lWchar);
 }
 
-U0 printHexU8(U8 key) {
-  U16* wChr = FixPtr(wchar);  
+U0 PrintGuid(CEfiGuid * guid) {
+  U64 i = 0;
+
+  "{"; printHexU32(guid->Data1); 
+  "-";  printHexU16(guid->Data2); 
+  "-"; printHexU16(guid->Data3); 
+  "-"; 
+  for (; i < 8; printHexU8(guid->Data4[i++]));
+  "} "; 
+
+  i = 0;
+  for (; i < 16; printHexU8(guid(U8*)[i++]));
+
+}
+
+public U0 printHexU8(U8 key) {
   U8* hChar = FixPtr(hexChars);
 
-  wChr[0] = hChar[(key >> 4) & 0xF] ;
-  wChr[1] = hChar[key & 0xF];
-  wChr[2] = 0;
+  lWchar[0] = hChar[(key >> 4) & 0xF];
+  lWchar[1] = hChar[key & 0xF];
+  lWchar[2] = 0;
 
-  EfiPrint(wChr);
+  EfiPrint(lWchar);
 }
 
 U0 printHexU16(U16 key) {
@@ -120,9 +175,6 @@ U0 printHexU64(U64 key) {
 U0 PutChars(U64 ch) {
   "%c", ch;
 }
-public extern U64 (*efi_print)(U16 *string, U64 p2 = 0, U64 p3 = 0, U8* this, U8* funct);
-U64 (*efi_print)(U16 *string, U64 p2 = 0, U64 p3 = 0, U8* this = ConOut, U8* funct = ConOut->OutputString);
-
 
 // This gets called by the initial ASM bootstrapper
 #exe{Option(OPTf_WARN_HEADER_MISMATCH, OFF);}
@@ -137,20 +189,36 @@ U64 EfiEntry(U64 efiSystemTable, U64 imageHandle, U64 stackPtr) {
   }
 
   // Set the application pointers
-  appPtrs.efi = efiSystemTable;
+  ST = efiSystemTable;
+  appPtrs.efi = ST;
   appPtrs.imageHandle = imageHandle;
-//  appPtrs.appPointer = appPtr;
   appPtrs.stackPointer = stackPtr; 
 
-  ConOut = appPtrs.efi->ConOut;
-  BootServices = appPtrs.efi->BootServices;
+  ConOut = ST->ConOut;
+  BS = ST->BootServices;
+  RT = ST->RuntimeServices;
 
-//  MapEfiMethods;
-  
-  efi_print = (&EfiCallWrapper + APPLICATION_ADDRESS);
+  lWchar = (APPLICATION_ADDRESS + &wchar(U8*)) & 0xFFFFFFFFFFFFFFF0; 
+
+  LoadedImageProtocol = NULL;
+  LoadedImageGuid = FixPtr(&LoadedImageGuid_);
+  GraphicsGuid = FixPtr(&GraphicsGuid_);
+
+  U64 res = efi_handle_protocol_t(imageHandle, LoadedImageGuid, FixPtr(&LoadedImageProtocol));
+  if (res) {
+    "Loaded Image Protocol error\r\n";
+    return res;
+  }
+
+  res = efi_locate_protocol_t(GraphicsGuid, NULL, FixPtr(&GOP));
+  if (res) {
+    "Graphics Protocol\r\n";
+    return res;
+  }
 
   return AppEntry();
 }
+
 #exe{Option(OPTf_WARN_HEADER_MISMATCH, ON);}
 
 

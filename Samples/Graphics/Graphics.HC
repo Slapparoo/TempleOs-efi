@@ -1,0 +1,23 @@
+U64 AppEntry() {
+
+  "Graphics\r\n\r\n";
+
+  "graphics CEfiGopMode                 "; printHexU64(&GOP); "\r\n"; 
+  "graphics max Mode                    "; printHexU32(GOP->Mode->MaxMode); "\r\n"; 
+  "graphics Mode->Mode                  "; printHexU32(GOP->Mode->Mode); "\r\n"; 
+  "graphics Mode->Mode->Information     "; printHexU64(GOP->Mode->Information); "\r\n"; 
+  "graphics Mode->Mode->FrameBufferBase "; printHexU64(GOP->Mode->FrameBufferBase); "\r\n"; 
+  "graphics Mode->Mode->FrameBufferSize "; printHexU64(GOP->Mode->FrameBufferSize); "\r\n"; 
+
+  "HorizontalResolution (w)     "; printHexU32(GOP->Mode->Information->HorizontalResolution); "\r\n"; 
+  "VerticalResolution   (h)     "; printHexU32(GOP->Mode->Information->VerticalResolution); "\r\n"; 
+  "PixelsPerScanLine    (wx)    "; printHexU32(GOP->Mode->Information->PixelsPerScanLine); "\r\n"; 
+
+  U64 yy = 50;
+  for (; yy < 200; yy++) {
+    U64 ll = (yy * GOP->Mode->Information->PixelsPerScanLine), xx = 50;
+    for(; xx < 200; GOP->Mode->FrameBufferBase[ll + xx++] = 0xAA0000); 
+  }
+  
+  return 0;
+}

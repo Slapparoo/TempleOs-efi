@@ -1,6 +1,4 @@
-
-
-// Fall through just falls through to what ever is declared after it
+// Fall through just falls through to what ever is declared after it
 asm {
 _APP_ENTRY::
 }
