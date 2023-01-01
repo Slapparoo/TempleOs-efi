@@ -1,8 +1,7 @@
 #include "/Efisource/File/EfiFile.HH";
 
 /**
-Basically takes an Exisintg .efi file and outputs the headers as hex
-which can then be used for a temple when creaing new .efi files
+Basically takes an Exisintg .efi file and outputs it as hex
 */
 
 //U8 *string;

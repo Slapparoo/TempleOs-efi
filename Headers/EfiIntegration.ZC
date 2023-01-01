@@ -1,21 +1,20 @@
-//#include "/Efisource/Headers/Efi.HH";
-
 
 CApplicationPointers appPtrs;
 CEfiSimpleTextOutputInterface *ConOut;// = appPtrs.efi->ConOut;
 CEfiBootServices *BS; // appPtrs.efi->BootServices
 CEfiRuntimeServices *RT; // appPtrs.efi->BootServices
 CEfiSystemTable *ST;
+CEfiSimpleInputInterface *ConIn;
 CEfiLoadedImageProtocol LoadedImageProtocol_;
 CEfiLoadedImageProtocol * LoadedImageProtocol;
 CEfiGop * GOP;// = FixPtr(&gop);
-
-
-CEfiGuid GraphicsGuid_ = EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID;
-CEfiGuid *GraphicsGuid;
-
-CEfiGuid LoadedImageGuid_ = EFI_LOADED_IMAGE_PROTOCOL_GUID;
-CEfiGuid *LoadedImageGuid;
+CEfiSimplePointerProtocol *SimplePointer;
+CEfiSimpleFileSystemProtocol *SimpleFileSystem;
+U8* SMBios;
+U8* Acpi;
+U8* Acpi20;
+U8* Mps;
+U8* SMBios3;
 
 
 U16 wchar[STR_LEN]; 
@@ -33,6 +32,12 @@ U0 ToWChar(U8 * src, U16 *dst) {
 }
 
 
+U16* AsWChar(U8 * src) {
+  ToWChar(src, lWchar);
+  return lWchar;
+}
+
+
 /**
 Efi methods expect the first 4 parameters in teh registers RCX, RDX, R8, R9
 they also expec 4 * 8 Bytes of space available in the callers local variable space
@@ -42,100 +47,111 @@ The U64 reg RCX p1 indicates to teh compiler you want that variable in that regi
 This isn't really ment to be called directly usedefine spring board method and use that instead
 
 */
+#exe{Option(OPTf_WARN_DUP_TYPES, OFF);}
+#exe{Option(OPTf_WARN_UNUSED_VAR, OFF);}
 
 
-U64 EfiCallWrapperOrdered(U64 reg RCX P1, U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RBX dest) {
-// Create 4 * U64 in the methods stack
-  U64 pad[4];
-
-  // 16 byte align
-//  AND  RSP, 0xFFFFFFFFFFFFFFF0
-  
-  XOR  RAX, RAX
-  CALL RBX
-
-  MOV  RSP, RBP
-}
+#define EFI_CALL_PAD_U64 5 // 0x28, decimal 40
 
 
-U64 EfiCallWrapper(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RCX this, U64 reg RBX dest) {
-// Create 4 * U64 in the methods stack
-  U64 pad[4];
-
-  // 16 byte align
-//  AND  RSP, 0xFFFFFFFFFFFFFFF0
-  
-  XOR  RAX, RAX
-  CALL RBX
-
-  MOV  RSP, RBP
-}
-
-
-U64 EfiMethodWrapper(U64 reg R15 method, ...) 
-{/*
-	The first 4 parameters get passed in RCX, RDX, R8, R9 params 5+ get passed on the stack
-	This does not pass floating point in xmm registers
+/**
+The parameters for this method are resolved at compiletime, what we need is the runtime values
+the the "this" and "dest" are only offsets to where the values can be found
 */
-	U64 pad[4];
+U64 EfiOOCall4(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 this, U64 dest) {
+  U64 reg RCX thisP = (*FixPtr(this)(U64*))(U8*); 
+  U64 reg RBX destP = thisP(U8*)[dest](U64);
 
-	// R14 presevered by callee
-	MOV	R14, RSP
+  U64 pad[EFI_CALL_PAD_U64];
 
-	switch (argc) {
-		case 9:
-			PUSH	U64	SF_ARG8+24[RBP]
-		case 8:
-			PUSH	U64	SF_ARG8+16[RBP]
-		case 7:
-			PUSH	U64	SF_ARG8+8[RBP]
-		case 6:
-			PUSH	U64	SF_ARG8[RBP]
-		case 5:
-			PUSH	U64	SF_ARG7[RBP]
-	};
-
-	MOV	RCX, U64 SF_ARG3[RBP]
-	MOV	RDX, U64 SF_ARG4[RBP]
-	MOV	R8, U64 SF_ARG5[RBP]
-	MOV	R9, U64 SF_ARG6[RBP]
-
-	XOR  RAX, RAX
-	CALL R15
-	MOV	RSP, R14
-}
-
-U64 EfiCalled() 
-{/* Example of a method being called from EFI */
-	U64 reg RCX p1, reg RDX p2, reg R8 p3, reg R9 p4, reg RAX tmp, p5, p6, p7, p8, p9;
-
-	MOV RAX, U64 SF_ARG1[RBP]
-	p5 = tmp;
-	MOV RAX, U64 SF_ARG2[RBP]
-	p6 = tmp;
-	MOV RAX, U64 SF_ARG3[RBP]
-	p7 = tmp;
-	MOV RAX, U64 SF_ARG4[RBP]
-	p8 = tmp;
-	MOV RAX, U64 SF_ARG5[RBP]
-	p9 = tmp;
-
-	"%x, %x, %x, %x, %x, %x, %x, %x, %x\n", p1, p2, p3, p4, p5, p6, p7, p8, p9;
-
-	return 1;
-}
-
-
-public U64 EfiPrint(U16 *wString) {
-//  return EfiCallWrapper(wString, 0, 0, appPtrs.efi->ConOut, appPtrs.efi->ConOut->OutputString);
-  return EfiCallWrapper(wString, 0, 0, ConOut, ConOut->OutputString);
-//  return EfiMethodWrapper(appPtrs.efi->ConOut->OutputString, appPtrs.efi->ConOut, wString);
+  XOR  RAX, RAX
+  CALL RBX
+  MOV  RSP, RBP 
 }
 
 /**
-Most things are passing relitive pointers with is no good it needs full address pointers
+The Object is still required so the function pointer can be picked out
+*/
+U64 EfiCall4(U64 reg RCX p1, U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U8* this, U64 dest) {
+  U64 thisP = (*FixPtr(this)(U64*))(U8*); 
+  U64 reg RBX destP = thisP(U8*)[dest](U64);
+
+  U64 pad[EFI_CALL_PAD_U64];
+
+  XOR  RAX, RAX
+  CALL RBX
+  MOV  RSP, RBP 
+}
+
+/**
+The Object is still required so the function pointer can be picked out
+*/
+U64 EfiCall5(U64 reg RCX p1, U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 p5, U8* this, U64 dest) {
+  U64 thisP = (*FixPtr(this)(U64*))(U8*); 
+  U64 reg RBX destP = thisP(U8*)[dest](U64);
+
+  U64 pad[EFI_CALL_PAD_U64];
+  pad[4] = p5;
+
+  XOR  RAX, RAX
+  CALL RBX
+  MOV  RSP, RBP 
+}
+
+
+
+U64 EfiCallWrapperOrdered(U64 reg RCX p1, U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RBX dest) {
+// Create 4 * U64 in the methods stack
+  U64 pad[EFI_CALL_PAD_U64];
+
+  XOR  RAX, RAX
+  CALL RBX
+  MOV  RSP, RBP
+}
+
+
+/**
+Used for "OO" style calls where the Object(this)  is the first paramater pass to Efi
+*/
+U64 EfiCallWrapper(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 reg RCX this, U64 reg RBX dest) {
+// Create 4 * U64 in the methods stack
+  U64 pad[EFI_CALL_PAD_U64];
+
+  XOR  RAX, RAX
+  CALL RBX
+  MOV  RSP, RBP
+}
+
+
+U64 EfiCallWrapper5(U64 reg RDX p2, U64 reg R8 p3, U64 reg R9 p4, U64 p5, U64 reg RCX this, U64 reg RBX dest) {
+// Create 4 * U64 in the methods stack
+  U64 pad[EFI_CALL_PAD_U64];
+  pad[4] = p5;
+
+  XOR  RAX, RAX
+  CALL RBX
+  MOV  RSP, RBP 
+}
+
+
+
+
+/** This should only be required during early bringup- but its used by print */
+public U64 EfiPrint(U16 *wString) {
+  return EfiCallWrapper(wString, 0, 0, ConOut, ConOut->OutputString);
+}
+
+#exe{Option(OPTf_WARN_DUP_TYPES, ON);}
+#exe{Option(OPTf_WARN_UNUSED_VAR, ON);}
+
+
+/**
+Most things are passing relitive pointers which is no good it needs virtual address pointers
+
+See also RuntimeServices.ConvertPointer, this may need to be done dynamically, all the time?
 */
 U8* FixPtr(U8 *ptr) {
+  // the Application addres is set the efi file headers
   if (ptr > APPLICATION_ADDRESS) {
     return ptr;
   } else {
@@ -180,8 +196,8 @@ U0 PrintGuid(CEfiGuid * guid) {
   for (; i < 8; printHexU8(guid->Data4[i++]));
   "} "; 
 
-  i = 0;
-  for (; i < 16; printHexU8(guid(U8*)[i++]));
+//  i = 0;
+//  for (; i < 16; printHexU8(guid(U8*)[i++]));
 
 }
 
@@ -214,7 +230,10 @@ U0 PutChars(U64 ch) {
   "%c", ch;
 }
 
-// This gets called by the initial ASM bootstrapper
+//public U64 (*efi_handle_protocol)(U8 * Handle, CEfiGuid *Protocol, U8 **Interface, U64 p4=NULL, U64 bs = &BS, U64 fctn = CEfiBootServices.HandleProtocol);
+//public U64 (*efi_locate_protocol)(CEfiGuid *Protocol, U8 *Registration, U8 **Interface, U64 p4=NULL, U64 bs = &BS, U64 fctn = CEfiBootServices.LocateProtocol);
+
+// This gets called by the initial bootstrapper
 #exe{Option(OPTf_WARN_HEADER_MISMATCH, OFF);}
 U64 EfiEntry(U64 efiSystemTable, U64 imageHandle, U64 stackPtr) {
 
@@ -235,28 +254,12 @@ U64 EfiEntry(U64 efiSystemTable, U64 imageHandle, U64 stackPtr) {
   ConOut = ST->ConOut;
   BS = ST->BootServices;
   RT = ST->RuntimeServices;
+  ConIn = ST->ConIn;
 
   lWchar = (APPLICATION_ADDRESS + &wchar(U8*)) & 0xFFFFFFFFFFFFFFF0; 
 
-  LoadedImageProtocol = NULL;
-  LoadedImageGuid = FixPtr(&LoadedImageGuid_);
-  GraphicsGuid = FixPtr(&GraphicsGuid_);
-
-	"Loading..\r\n";
-
-  U64 res = efi_handle_protocol_t(imageHandle, LoadedImageGuid, FixPtr(&LoadedImageProtocol));
-  if (res) {
-    "Loaded Image Protocol error\r\n";
-    return res;
-  }
-
-  res = efi_locate_protocol_t(GraphicsGuid, NULL, FixPtr(&GOP));
-  if (res) {
-    "Graphics Protocol\r\n";
-    return res;
-  }
-
-  return AppEntry();
+  // Continue with startup
+  return EfiStartup();
 }
 
 #exe{Option(OPTf_WARN_HEADER_MISMATCH, ON);}

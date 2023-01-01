@@ -14,7 +14,7 @@ U64 _Entry() {
   U64 reg RDX efiPtr;
   U64 reg RBP stackPtr;
 
-  return EfiEntry(efiPtr, imageHandle, stackPtr);
+  return EfiEntry(efiPtr, imageHandle, stackPtr);
 }
 
 #exe{Option(OPTf_WARN_DUP_TYPES, ON);}

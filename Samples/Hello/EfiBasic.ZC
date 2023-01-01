@@ -1,5 +1,0 @@
-
-U64 AppEntry() {
-	"Hello from TempleOS\r\n";
-}
-

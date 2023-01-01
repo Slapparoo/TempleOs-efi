@@ -1,11 +1,10 @@
 // Doesn't do much except check the dependancy order is correct
-
 #include "/Efisource/Headers/EfiKernelA.HH"
 #include "/Efisource/Headers/EfiEntry.ZC"
 #include "/Efisource/Headers/Uefi.HH"
-#exe {Option(OPTf_EXTERNS_TO_IMPORTS,	ON);};
-#include "/Efisource/Headers/Efi.HH"
-#exe {Option(OPTf_EXTERNS_TO_IMPORTS,	OFF);};
+#include "/Efisource/Headers/EfiInternal.HH"
 #include "/Efisource/Headers/EfiIntegration.ZC"
 #include "/Efisource/Headers/EfiMethods.ZC"
+#include "/Efisource/Headers/EfiStartUp.ZC"
+//#include "/Efisource/Headers/AppEntry.ZC"
 

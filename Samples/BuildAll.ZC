@@ -1,0 +1,11 @@
+Cd(__DIR__);
+
+#include "/Efisource/Samples/01-Asm/Build.ZC"
+#include "/Efisource/Samples/02-Hello/Build.ZC"
+#include "/Efisource/Samples/03-InfoDump/Build.ZC"
+#include "/Efisource/Samples/04-Graphics/Build.ZC"
+#include "/Efisource/Samples/05-Keyboard/Build.ZC"
+#include "/Efisource/Samples/06-Mouse/Build.ZC"
+#include "/Efisource/Samples/07-FileSystem/Build.ZC"
+#include "/Efisource/Samples/FunctionPtrs/Build.ZC"
+

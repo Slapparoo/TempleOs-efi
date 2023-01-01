@@ -605,7 +605,7 @@ class CEfiBootServices:CEfiTableHeader {
 #define EFI_IMAGE_INFORMATION_REVISION  EFI_LOADED_IMAGE_PROTOCOL_REVISION
 
 class CEfiLoadedImageProtocol {
-    U32 Revision;
+    U64 Revision;
     U8 * ParentHandle;
     U8 * SystemTable;
     U8 * DeviceHandle;
@@ -959,7 +959,7 @@ enough so they introduced a GUID
 #define EFI_DEVICE_PATH_PROTOCOL_GUID { 0x9576e91, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b} }
 #define EFI_GLOBAL_VARIABLE             { 0x8BE4DF61, 0x93CA, 0x11d2, {0xAA, 0x0D, 0x00, 0xE0, 0x98, 0x03, 0x2B, 0x8C} }
 #define EFI_LOADED_IMAGE_PROTOCOL_GUID { 0x5B1B31A1, 0x9562, 0x11d2, {0x8E, 0x3F, 0x00, 0xA0, 0xC9, 0x69, 0x72, 0x3B} }
-#define LOADED_IMAGE_PROTOCOL EFI_LOADED_IMAGE_PROTOCOL_GUID
 
 
 
+ 
