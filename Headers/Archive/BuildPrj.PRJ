@@ -1,0 +1,33 @@
+/**
+Build All the Basic integration test projects, these use the return
+to set a value which can be checked in EfiShell using $FG,5$set$FG$
+*/
+
+Cd("/Efisource/Headers");
+// returns the value of the application pointer
+Cmp("ccAppPointer");
+EfiFromBin("ccAppPointer");
+
+Cd("/Efisource/Headers");
+
+// returns the imagehandle this is pass to the application in RCX
+Cmp("ccImageHandle");
+EfiFromBin("ccImageHandle");
+
+Cd("/Efisource/Headers");
+
+// returns the SystemTable pointer this is pass to the application is RDX
+Cmp("ccSysTable");
+EfiFromBin("ccSysTable");
+
+Cd("/Efisource/Headers");
+
+// Gneral basic wiring test
+Cmp("EfiCompileCheck");
+EfiFromBin("EfiCompileCheck");
+
+Cd("/Efisource/Headers");
+
+// returns the initial stack pointer this is pass to the application is RSP
+Cmp("ccStackPointer");
+EfiFromBin("ccStackPointer");

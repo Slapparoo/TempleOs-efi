@@ -142,7 +142,6 @@ U0 printPeOptionalheader(CPe32OptionalHeader *pe32OptionalHeader, CPeImageDataDi
 
     "OptionalHeader->MajorLinkerVersion       0x%08x\n", pe32OptionalHeader->MajorLinkerVersion;
     "OptionalHeader->MinorLinkerVersion       0x%08x\n", pe32OptionalHeader->MinorLinkerVersion;
-    "OptionalHeader->SizeOfCode               0x%08x\n", pe32OptionalHeader->SizeOfCode;
     "OptionalHeader->SizeOfInitializedData    0x%08x\n", pe32OptionalHeader->SizeOfInitializedData;
     "OptionalHeader->SizeOfUninitializedData  0x%08x\n", pe32OptionalHeader->SizeOfUninitializedData;
     "OptionalHeader->AddressOfEntryPoint      0x%08x\n", pe32OptionalHeader->AddressOfEntryPoint;

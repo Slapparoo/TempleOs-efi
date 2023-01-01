@@ -1,0 +1,9 @@
+#exe {
+  Cd(__DIR__);;
+  Option(OPTf_WARN_PAREN,ON);
+  Option(OPTf_WARN_DUP_TYPES,ON);
+};
+
+#include "/Efisource/Headers/EfiCompileInc.PRJ"
+#include "/Efisource/Samples/FunctionPtrs/FunctionPtrs.HC"
+
