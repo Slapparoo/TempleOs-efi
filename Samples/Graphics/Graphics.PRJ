@@ -4,6 +4,6 @@
   Option(OPTf_WARN_DUP_TYPES,ON);
 };
 
-#include "/Efisource/Headers/EfiCompileInc.PRJ.Z"
-#include "/Efisource/Samples/Graphics/Graphics.HC"
+#include "/Efisource/Headers/EfiCompileInc.PRJ"
+#include "/Efisource/Samples/Graphics/Graphics.ZC"
 

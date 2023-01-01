@@ -1,0 +1,3 @@
+#include "/Efisource/File/EfiFile.HH"
+#include "/Efisource/File/EfiFileReader.ZC"
+#include "/Efisource/File/EfiFileWriter.ZC"

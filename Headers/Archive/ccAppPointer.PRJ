@@ -1,0 +1,13 @@
+// Doesn't do much except check the dependancy order is correct
+#exe {
+  Cd(__DIR__);;
+/*  Del("/Efisource/Headers/EfiCompileCheck.BIN.Z"); */
+  Option(OPTf_WARN_PAREN,ON);
+  Option(OPTf_WARN_DUP_TYPES,ON);
+};
+#include "/Efisource/Headers/EfiKernelA.HH"
+#include "/Efisource/Headers/EfiEntry.ZC"
+#include "/Efisource/Headers/Efi.HH"
+#include "/Efisource/Headers/EfiIntegration.ZC"
+
+public U64 AppEntry() {return appPtrs.appPointer;};

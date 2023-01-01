@@ -1,0 +1,7 @@
+#include "/Efisource/File/EfiFiles.PRJ"
+
+Cd(__DIR__);
+
+Comp("Graphics");
+
+EfiFromBin("Graphics");

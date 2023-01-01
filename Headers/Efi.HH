@@ -1,5 +1,5 @@
-#include "/Efisource/Headers/EfiKernelA.HH";
-#include "/Efisource/Headers/Uefi.HH";
+//#include "/Efisource/Headers/EfiKernelA.HH";
+//#include "/Efisource/Headers/Uefi.HH";
 
 /**
 class definitions
@@ -16,7 +16,8 @@ Helper methods
 */
 public extern U64 AppEntry();
 public extern U64 EfiCallWrapper(U64 p2, U64 p3, U64 p4, U64 this, U64 dest);
-public extern U64 EfiCallWrapperOrdered(U64 P1, U64 p2, U64 p3, U64 p4, U64 dest) {
+public extern U64 EfiCallWrapperOrdered(U64 P1, U64 p2, U64 p3, U64 p4, U64 dest);
+public extern U64 EfiMethodWrapper(U64 method, ...);
 
 public extern U8* FixPtr(U8 *ptr);
 
@@ -30,7 +31,7 @@ public extern U0 PrintGuid(CEfiGuid * guid);
 Data
 */
 
-public CApplicationPointers appPtrs;
+public CApplicationPointers appPtrs;
 public CEfiSimpleTextOutputInterface *ConOut;// = appPtrs.efi->ConOut;
 public CEfiBootServices *BS; // appPtrs.efi->BootServices
 public CEfiRuntimeServices *RT; // appPtrs.efi->BootServices

@@ -1,0 +1,9 @@
+//#include "/Efisource/Samples/EfiBasic.PRJ.Z"
+
+Cd(__DIR__);
+
+// Standard HolyC Compile produces EfiBasic.ZXE
+Comp("EfiBasic");
+
+// Produce EfiAsm.efi file from the EfiBasic.ZXE 
+EfiFromBin("EfiBasic");
