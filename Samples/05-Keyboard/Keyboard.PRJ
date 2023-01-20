@@ -5,5 +5,5 @@
 };
 
 #include "/Efisource/Headers/EfiCompileInc.PRJ"
-#include "/Efisource/Samples/05-Keyboard/Keyboard.HC"
+#include "/Efisource/Samples/05-Keyboard/Keyboard.ZC"
 

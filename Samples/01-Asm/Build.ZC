@@ -1,0 +1,12 @@
+#include "/Efisource/File/EfiFiles.PRJ"
+Cd(__DIR__);
+
+Del("EfiAsm.ZXE");
+Del("EfiAsm.efi");
+
+
+// Standard HolyC Compile produces EfiAsm.BIN.Z
+Comp("EfiAsm");
+
+// Produce EfiAsm.efi file from the EfiAsm.BIN.Z 
+EfiFromBin("EfiAsm");

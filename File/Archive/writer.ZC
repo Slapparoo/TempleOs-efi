@@ -44,7 +44,7 @@ U0 writeToFile(CPeSectionHeader *peSectionHeader, CPeHeader *peHeader)
 
     CPeImageDataDirectory *pPeImageDataDirectorys = &template[frontMatter->HeaderOffset + sizeof(CPeHeader) + sizeof(CPe32OptionalHeader)];
     CPeSectionHeader *peSectionHeader = &template[frontMatter->HeaderOffset + sizeof(CPeHeader) + sizeof(CPe32OptionalHeader) + (sizeof(CPeImageDataDirectory) * 16)];
-
+
     // calculate the end of the headers this should ~= the first section (its align so it will be the next section)
     U64 sz = peSectionHeader - template + (sizeof(CPeSectionHeader) * peHeader->NumberOfSections);
 

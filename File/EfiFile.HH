@@ -101,7 +101,7 @@ class CPeFrontMatter
     U16 SomeNUmber;
     U16 pad[28];
     U16 HeaderOffset;
-    U16 pad[8];
+    U16 pad[8];
     U8 sometext[50];
 };
 

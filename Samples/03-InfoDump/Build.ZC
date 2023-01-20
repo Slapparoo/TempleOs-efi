@@ -1,0 +1,9 @@
+#include "/Efisource/File/EfiFiles.PRJ"
+
+Cd(__DIR__);
+
+// Standard HolyC Compile produces InfoDump.BIN.Z
+Comp("InfoDump");
+
+// Produce InfoDump.efi file from the InfoDump.BIN.Z 
+EfiFromBin("InfoDump");

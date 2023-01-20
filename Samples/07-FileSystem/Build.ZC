@@ -1,0 +1,9 @@
+#include "/Efisource/File/EfiFiles.PRJ"
+
+Cd(__DIR__);
+
+// Standard HolyC Compile produces FileSystem.BIN.Z
+Comp("FileSystem");
+
+// Produce FileSystem.efi file from the FileSystem.BIN.Z 
+EfiFromBin("FileSystem");

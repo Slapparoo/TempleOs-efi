@@ -1,0 +1,11 @@
+/**
+
+Remore all the build binary artifacts from the samples
+
+*/
+Cd(__DIR__);
+
+DelTree("/Efisource/Samples/*.efi");
+DelTree("/Efisource/Samples/*.ZXE");
+
+CursorRemove("/Efisource/Samples/*");

@@ -14,4 +14,4 @@ The resulting EfiAsm.efi application can be inspected with EfiFileDump("EfiAsm")
 
 Once happy it can be copied to a UEFI boot parition 
 
-A good way to run them is in VirtualBox in EfiShell (which is already installed in VirtualBox)
+A good way to run them is in VirtualBox in EfiShell (which is already installed in VirtualBox)

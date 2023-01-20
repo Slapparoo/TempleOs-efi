@@ -1,0 +1,39 @@
+/**
+Full (no external dependancies)  most basic implementation is ASM
+*/
+
+asm {
+  USE64
+
+    PUSH RBP
+    MOV  RBP, RSP
+    MOV  RDI, RCX  // ImageHandle
+    MOV  R11, RDX  // efi ptr
+    MOV  RCX, R11
+
+    
+    MOV RCX, [RDX + 0x40]  // 0x40 is ConOut
+    MOV RBX, [RCX + 0x8]  // 0x8 is OutPutString
+    // to move address it needs a LEA not a MOV
+    LEA RDX, [STR_MSG]
+
+    // Clear RAX and setup the stack 
+    XOR RAX, RAX
+    AND  RSP, 0xFFFFFFFFFFFFFFF0
+    // the stack may only need 0x20 not 0x28
+    SUB  RSP, 0x28
+
+    CALL RBX
+
+    MOV RSP, RBP
+    POP RBP
+
+
+    RET
+
+STR_MSG:
+    // Each char is U16 not U8
+    DU16 'H','e','l','l','o','\n', 0;   
+//    DU8 0x100000 DUP(0);
+};
+

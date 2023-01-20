@@ -40,7 +40,7 @@ CPeImageDataDirectory *peImageDataDirectorys = &string[offset];
 offset += sizeof(CPeImageDataDirectory) * 16; 
 CPeSectionHeader *peSectionHeader = &string[offset];
 
-U8* headerEnd = peSectionHeader(U8*) + sizeof(CPeSectionHeader);
+U8* headerEnd = peSectionHeader(U8*) + sizeof(CPeSectionHeader);
 
 
 "\n\nU8 efiSimpleTemplate[0x%x] = {", headerEnd - string;

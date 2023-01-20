@@ -1,0 +1,86 @@
+/**
+Basic mouse & Keyboard
+*/
+
+CEfiSimplePointerState mouse_;
+CEfiSimplePointerState *mouse;
+
+CEfiInputType input_;
+CEfiInputType *input;
+U16 ch_[2] = {0, 0};
+U16 *ch;
+U64 o_, *o;
+U64 i = 0;
+
+U64 events_[2];
+U64 *events;
+
+U64 AppEntry() {
+  "Mouse & Keyboard\r\n";
+
+  events = FixPtr(&events_);
+  mouse = FixPtr(&mouse_);
+  input = FixPtr(&input_);
+  ch = FixPtr(&ch_);
+  o = FixPtr(&o_);
+
+  events_[0] = ConIn->WaitForKey;
+  events_[1] = SimplePointer->WaitForInput;
+
+ "SimplePointer ";  printHexU64(SimplePointer); "\r\n";
+ "ResolutionX   ";  printHexU64(SimplePointer->Mode->ResolutionX); "\r\n";
+ "ResolutionY   ";  printHexU64(SimplePointer->Mode->ResolutionY); "\r\n";
+ "GetState      ";  printHexU64(SimplePointer->GetState); "\r\n";
+ "Reset         ";  printHexU64(SimplePointer->Reset); "\r\n";
+ 
+  U64 res = efi_simple_pointer_reset(TRUE);
+
+ "Reset state   ";  printHexU64(res); "\r\n";
+
+  efi_simple_pointer_get_state(mouse);
+
+  if (mouse->LeftButton) {
+    "LeftMouse\r\n";
+  } 
+  if (mouse->RightButton) {
+    "RightButton\r\n";
+  }
+  "x="; printHexU32(mouse->RelativeMovementX); ", y="; printHexU32(mouse->RelativeMovementY); "\r\n"; 
+
+
+  for (; i < 100 ; i++) {  
+    efi_wait_for_event(2, events, o);
+
+    // o is the index into the wait for events, we are expect a zero or one    
+    if (o_) {
+      // mouse
+      efi_simple_pointer_get_state(mouse);
+      if (mouse->LeftButton) {
+        "LeftMouse\r\n";
+      } 
+      if (mouse->RightButton) {
+        "RightButton\r\n";
+      }
+      "x="; printHexU32(mouse->RelativeMovementX); ", y="; printHexU32(mouse->RelativeMovementY); "\r\n"; 
+    } else {
+      // keyboard    
+
+      efi_input_readkey(input);
+      if (input->UnicodeChar != '\r'){
+        ch[0] = input->UnicodeChar;
+        EfiPrint(ch); 
+      } else {
+        "\r\n";
+      }
+      if (!input->UnicodeChar) {
+        // special key
+        "\r\nScanCode=0x";
+        printHexU16(input->ScanCode);
+        "\r\n";
+        return 0;
+      }
+    }
+  } 
+  
+  return 0;
+}

@@ -5,7 +5,7 @@ When used in combination with default parameters, diffent
 method signatures can be used to provide differnt behaviors
 from the same method call
 */
-Trace;
+Trace;
 
 U64 Destination(U64 a, U64 b, U64 c, U64 d) {
   "a %d, b %d, c %d, d %d\n", a, b, c, d; 

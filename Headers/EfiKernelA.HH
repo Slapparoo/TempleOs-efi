@@ -76,3 +76,15 @@ I64i union I64
 public extern U0 Print(U8 *fmt,...);
 
 
+#help_index "Call"
+//Function Stack Frame
+#define SF_RBP	0x00
+#define SF_RIP	0x08
+#define SF_ARG1 0x10
+#define SF_ARG2 0x18
+#define SF_ARG3 0x20
+#define SF_ARG4 0x28
+#define SF_ARG5 0x30
+#define SF_ARG6 0x38
+#define SF_ARG7 0x40
+#define SF_ARG8 0x48

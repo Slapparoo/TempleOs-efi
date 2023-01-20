@@ -6,8 +6,8 @@
   Option(OPTf_WARN_DUP_TYPES,ON);
 };
 #include "/Efisource/Headers/EfiKernelA.HH"
-#include "/Efisource/Headers/EfiEntry.HC"
+#include "/Efisource/Headers/EfiEntry.ZC"
 #include "/Efisource/Headers/Efi.HH"
-#include "/Efisource/Headers/EfiIntegration.HC"
+#include "/Efisource/Headers/EfiIntegration.ZC"
 
-public U64 AppEntry() {return appPtrs.appPointer;};
+public U64 AppEntry() {return appPtrs.appPointer;};

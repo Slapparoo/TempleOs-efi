@@ -23,7 +23,7 @@ U64 DestinationEfiDummyMethod(U64 a, U64 b, U64 c, U64 d) {
 
 asm {
 _CALLED_BY_EFI::
-// push the parameters which arrived in register onto the stack
+// push the parameters which arrived in register onto the stack
  PUSH   RBP 
  MOV	RBP, RSP
  PUSH   R9

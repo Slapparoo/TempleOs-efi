@@ -30,4 +30,4 @@ Cd("/Efisource/Headers");
 
 // returns the initial stack pointer this is pass to the application is RSP
 Cmp("ccStackPointer");
-EfiFromBin("ccStackPointer");
+EfiFromBin("ccStackPointer");

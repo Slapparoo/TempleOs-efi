@@ -1,0 +1,80 @@
+/**
+Basic File interactions
+*/
+CEfiFileHandle *fileHandle;
+CEfiFileHandle *newHandle;
+
+U16 fname[9] = {'m','a','i','n','.','e','f','i',0};
+U64 pos;
+
+U64 AppEntry() {
+  "File IO fat32\r\n";
+
+  U64 res = efi_volume_open(FixPtr(&fileHandle));
+
+  "Result        "; printHexU64(res); "\r\n";
+  "FileHandle    "; printHexU64(fileHandle); "\r\n";
+  "Revision      "; printHexU64(fileHandle->Revision); "\r\n";
+
+
+  "LoadedImageProtocol                    "; printHexU64(LoadedImageProtocol); "\r\n";
+
+  "LoadedImageProtocol->Revision          "; printHexU32(LoadedImageProtocol->Revision); "\r\n";
+  "LoadedImageProtocol->Parenthandle      "; printHexU64(LoadedImageProtocol->ParentHandle); "\r\n";
+  "LoadedImageProtocol->SystemTable       "; printHexU64(LoadedImageProtocol->SystemTable); "\r\n";
+  "LoadedImageProtocol->DeviceHandle      "; printHexU64(LoadedImageProtocol->DeviceHandle); "\r\n";
+
+
+  "LoadedImageProtocol->Filepath->Type    "; printHexU8(LoadedImageProtocol->FilePath->Type); "\r\n";
+  "LoadedImageProtocol->Filepath->SubType "; printHexU8(LoadedImageProtocol->FilePath->SubType); "\r\n";
+  "LoadedImageProtocol->Filepath->Length  "; printHexU16(LoadedImageProtocol->FilePath->Length); "\r\n";
+
+
+  EfiPrint(FixPtr(&fname)); "\r\n";
+  res = efi_file_open(fileHandle, FixPtr(&newHandle), FixPtr(&fname), EFI_FILE_MODE_READ, EFI_FILE_READ_ONLY | EFI_FILE_HIDDEN | EFI_FILE_SYSTEM);
+//  res = efi_file_open(fileHandle, FixPtr(&newHandle), FixPtr(&fname), EFI_FILE_MODE_WRITE, EFI_FILE_READ_ONLY | EFI_FILE_HIDDEN | EFI_FILE_SYSTEM); 
+  if (res) {
+    "Error opening file \r\n";
+    return res;
+  }
+
+  "Result        "; printHexU64(res); "\r\n";
+  "FileHandle    "; printHexU64(newHandle); "\r\n";
+  "Revision      "; printHexU64(newHandle->Revision); "\r\n";
+
+  res = efi_file_get_pos(newHandle, FixPtr(&pos));
+  if (res) {
+    "Error get pos \r\n";
+    return res;
+  }
+
+  "Pos        "; printHexU64(pos); "\r\n";
+
+  res = efi_file_set_pos(newHandle, 100);
+  if (res) {
+    "Error get pos \r\n";
+    return res;
+  }
+
+  res = efi_file_get_pos(newHandle, FixPtr(&pos));
+  if (res) {
+    "Error get pos \r\n";
+    return res;
+  }
+
+  "Pos        "; printHexU64(pos); "\r\n";
+  
+  res = efi_file_close(newHandle);
+  if (res) {
+    "Error closing file \r\n";
+    return res;
+  }
+
+/*  res = efi_file_delete(newHandle);
+  if (res) {
+    "Error deleting file \r\n";
+    return res;
+  }
+*/
+  return 0;
+}

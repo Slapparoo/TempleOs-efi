@@ -1,0 +1,40 @@
+/**
+Echo Keyboard
+*/
+CEfiInputType input_;
+CEfiInputType *input;
+U16 ch_[2] = {0, 0};
+U16 *ch;
+U64 o_, *o;
+U64 i = 0;
+
+
+U64 AppEntry() {
+  "Keyboard\r\n";
+
+  input = FixPtr(&input_);
+  ch = FixPtr(&ch_);
+  o = FixPtr(&o_);
+  
+
+  for (; i < 100 ; i++) {  
+//    efi_wait_for_event(1, &ConIn->WaitForKey, o);
+    efi_input_readkey(input);
+    if (input->UnicodeChar != '\r'){
+      ch[0] = input->UnicodeChar;
+      EfiPrint(ch); 
+    } else {
+      "\r\n";
+    }
+    if (!input->UnicodeChar) {
+      // special key
+      "\r\nScanCode=0x";
+      printHexU16(input->ScanCode);
+      "\r\n";
+      return 0;
+    }
+    
+  } 
+  
+  return 0;
+}

@@ -1,0 +1,116 @@
+/** 
+GUID's
+ */
+
+/**
+Used to check what is available in the ST->ConfigurationTable
+*/
+
+//CEfiGuid InternalShellGuid = INTERNAL_SHELL_GUID;
+CEfiGuid MpsTableGuid = MPS_TABLE_GUID;
+CEfiGuid AcpiTableGuid = ACPI_TABLE_GUID;
+CEfiGuid Acpi20TableGuid = ACPI_20_TABLE_GUID;
+CEfiGuid SmbiosTableGuid = SMBIOS_TABLE_GUID;
+CEfiGuid Smbios3TableGuid = SMBIOS3_TABLE_GUID;
+//CEfiGuid SalSystemTableGuid = SAL_SYSTEM_TABLE_GUID;
+//CEfiGuid EfiGlobalVariable = EFI_GLOBAL_VARIABLE;
+
+CEfiGuid LoadedImageGuid_ = EFI_LOADED_IMAGE_PROTOCOL_GUID;
+
+CProtocol Protocols[LOAD_PROTOCOLS_SIZE] = {
+  {"Graphics", NULL, EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID, TRUE, NULL},
+  {"SimplePointer", NULL, EFI_SIMPLE_POINTER_PROTOCOL_GUID, TRUE, NULL},
+  {"SimpleFileSystem", NULL, EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID, TRUE, NULL},
+};
+
+
+U64 LoadProtocols() {
+  // because the call to UEFI screws around with registers, use one which probaly isn't used
+  // until the issue can be resolved.
+  // @TODO something is trampling the values in Protocols or they are not getting set correctly, or the pointers are broken
+  U64 reg R12 i = 0, res = 0;
+  "@TODO Fix names...\r\n";
+  for (; i < LOAD_PROTOCOLS_SIZE; i++) {
+   
+
+    res = efi_locate_protocol(FixPtr(&Protocols[i].Guid), NULL, FixPtr(&Protocols[i].Pointer));
+    if (res) {
+      Protocols[i].Loaded = FALSE;
+      "Error locating "; Print(Protocols[i].Name); " Protocol result="; printHexU64(res); " Guid="; PrintGuid(FixPtr(&Protocols[i].Guid)); "\r\n";
+      if (Protocols[i].Required) {
+        return res;
+      }
+    } else {
+      if (Protocols[i].Pointer) {
+        "Pointer not returned for "; Print(Protocols[i].Name); " "; PrintGuid(FixPtr(&Protocols[i].Guid)); "\r\n";
+        return 1;
+      } 
+      "Located "; /*Print(Protocols[i].Name);*/ Print(FixPtr(Protocols[i].Name));  " "; printHexU64(FixPtr(Protocols[i].Name)); " "; PrintGuid(FixPtr(&Protocols[i].Guid)); "\r\n";
+      Protocols[i].Loaded = TRUE; 
+    }
+  }
+  return 0;
+}
+
+U64 CompareGuid(CEfiGuid *a, CEfiGuid *b) {
+  // GUIDS are 2x U64
+  return a(U64*)[0] == b(U64*)[0] && a(U64*)[1] == b(U64*)[1];
+}
+
+/**
+
+Call Efi protocols and start populating bringup tables etc.
+
+*/
+U64 j = 0;
+
+U64 EfiStartup() {
+  U64 res = WireEfiMethods();
+  if (res) { 
+    "Wire Efi methods error\r\n";
+    return res;
+  }
+
+  res = efi_handle_protocol(appPtrs.imageHandle, FixPtr(&LoadedImageGuid_), FixPtr(&LoadedImageProtocol));
+  if (res) {
+    "error calling efi_handle_protocol (LoadedImageProtocol) "; printHexU64(res); "\r\n";
+    return res;
+  }
+
+  res = LoadProtocols();
+  if (res) {
+    "Load Protocols Error "; printHexU64(res);
+    return res;
+  }
+
+  GOP = Protocols[0].Pointer;
+  SimplePointer = Protocols[1].Pointer;
+  SimpleFileSystem = Protocols[2].Pointer;
+
+  // probaby sorting and a sensible match would be better than brut force
+  // the if block is not idea but I have yet more trouuble with pointers
+  for (; j < ST->NumberOfTableEntries; j++) {  
+    CEfiGuid * vGuid = &ST->ConfigurationTable[j].VendorGuid;
+    if (CompareGuid(FixPtr(&MpsTableGuid),  vGuid)) {
+      Mps = ST->ConfigurationTable[j].VendorTable;
+      "Mps Table GUID match "; printHexU64(Mps); "\r\n";
+    } else if (CompareGuid(FixPtr(&AcpiTableGuid),  vGuid)) {
+      Acpi = ST->ConfigurationTable[j].VendorTable;
+      "Acpi Table GUID match "; printHexU64(Acpi); "\r\n";
+    } else if (CompareGuid(FixPtr(&Acpi20TableGuid),  vGuid)) {
+      Acpi20 = ST->ConfigurationTable[j].VendorTable;
+      "Acpi 20 Table match "; printHexU64(Acpi20);  "\r\n";
+    } else if (CompareGuid(FixPtr(&SmbiosTableGuid),  vGuid)) {
+      SMBios = ST->ConfigurationTable[j].VendorTable;
+      "SMBios Table set "; printHexU64(SMBios); "  "; printHexU32(*SMBios(U32));  "\r\n";
+    } else if (CompareGuid(FixPtr(&Smbios3TableGuid),  vGuid)) {
+      SMBios3 = ST->ConfigurationTable[j].VendorTable;
+      "SMBios 3 table GUID Match "; printHexU64(SMBios3);  "\r\n";
+    } else {
+      "**No match "; PrintGuid(vGuid); "\r\n";
+    }
+  }
+
+  // Continue with the application
+  return AppEntry();
+}

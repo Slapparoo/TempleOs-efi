@@ -1,0 +1,34 @@
+/**
+
+I encounted some issues with function pointers so a created a dedicated
+app to further explore how they could be used
+
+*/
+
+
+U64 DestFunction(U64 p1, U64 p2, U64 p3, U8* this, U64 function) {
+  U8* thisP = (*FixPtr(this)(U64*))(U8*);   
+
+  "this="; printHexU64(thisP); ", function="; printHexU64(thisP[function](U64)); ", "; printHexU64(*(thisP + function)(U64));   "\r\n";
+
+  return EfiCallWrapper(p1, p2, p3, thisP, thisP[function](U64));
+}
+
+public U64 (*ConOutOutputString)(U64 wChar, U64 p2=NULL, U64 p3=NULL, U64 this=&ConOut, U64 fctn=CEfiSimpleTextOutputInterface.OutputString);
+public U64 (*ConOutReset)(U64 something, U64 p2=NULL, U64 p3=NULL, U64 this=&ConOut, U64 fctn=CEfiSimpleTextOutputInterface.Reset);
+
+
+U64 AppEntry() {
+
+  "Function Pointer ";  printHexU64(efi_text_reset); ", "; printHexU64(&efi_text_reset); "\r\n";
+  
+  efi_text_reset(FALSE);
+
+  ConOutOutputString = FixPtr(&DestFunction);
+  ConOutOutputString(AsWChar("Hello there\r\n"));
+
+  "Function Pointers ConOut "; printHexU64(ConOut); ", OutputString="; printHexU64(ConOut->OutputString); "\r\n";
+  
+  return 0;
+}
+

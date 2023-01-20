@@ -210,7 +210,7 @@ U0 dumpSectionBlobsToFile(CPeSectionHeader *peSectionHeader, CPeHeader *peHeader
 */
 
 U0 EfiFileDump(U8 * filename) {
-  U8 * efiFName = ExtDft(filename, "efi");
+  U8 * efiFName = ExtDefault(filename, "efi");
   U64 sz = 0;
 
   "Dumping %s \n", efiFName;

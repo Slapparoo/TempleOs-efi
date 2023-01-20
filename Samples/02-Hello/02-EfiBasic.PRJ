@@ -5,5 +5,9 @@
 };
 
 #include "/Efisource/Headers/EfiCompileInc.PRJ"
-#include "/Efisource/Samples/FunctionPtrs/FunctionPtrs.ZC"
+U64 AppEntry() {
+#include "/Efisource/Samples/02-Hello/EfiBasic.ZC"
+  return 0;
+}
+
 
